@@ -1,0 +1,265 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 10
+
+        Label:
+            text: "LOGIN"
+            font_size: 32
+            bold: True
+
+        TextInput:
+            id: username
+            hint_text: "Username"
+            multiline: False
+
+        TextInput:
+            id: password
+            hint_text: "Password"
+            password: True
+            multiline: False
+
+        Button:
+            text: "LOGIN"
+            size_hint: (1, 0.2)
+            on_press: root.login()
+
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgb: 0, 0, 0  # Background color (black)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Top Bar with Greeting, Company Name, and Profile Picture
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: 10
+            spacing: 10
+
+            Label:
+                text: "Hi, ADMIN1"
+                font_size: 18
+                color: 1, 1, 1, 1  # White text
+                halign: 'left'
+                valign: 'middle'
+                size_hint_x: 0.2
+
+            Label:
+                text: "PT. ABADI SELALU"
+                font_size: 24
+                bold: True
+                color: 1, 1, 1, 1  # White text
+                halign: 'center'
+                valign: 'middle'
+                size_hint_x: 0.6
+
+            Button:
+                size_hint: None, None  # Nonaktifkan size_hint agar kita bisa atur ukuran manual
+                size: dp(50), dp(50)   # Ukuran kotak sempurna 50x50 dp, bisa disesuaikan
+                background_normal: 'asset/profile_icon.png'
+                background_down: 'asset/profile_icon.png'
+                on_press: app.root.current = 'profile'
+
+        # Data Section (Could be a chart or colored bars)
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: 10
+            spacing: 10
+
+            Label:
+                text: "[u]Data Karyawan Yang Sudah Ter-Rekap[/u]"
+                font_size: 16
+                markup: True
+                color: 0, 0.5, 1, 1  # Blue text
+                halign: 'center'
+                valign: 'middle'
+
+        # Chart Area (Blue and Red blocks representing "Sudah" and "Belum")
+        BoxLayout:
+            size_hint_y: 0.2
+            spacing: 5
+
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgb: 0.3, 0.5, 1  # Blue bar
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgb: 1, 0.3, 0.3  # Red bar
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+        # Labels for "Sudah" and "Belum"
+        BoxLayout:
+            size_hint_y: 0.05
+            padding: 10
+            spacing: 10
+
+            Label:
+                text: "Sudah"
+                font_size: 16
+                color: 1, 1, 1, 1  # White text
+                halign: 'center'
+                valign: 'middle'
+
+            Label:
+                text: "Belum"
+                font_size: 16
+                color: 1, 1, 1, 1  # White text
+                halign: 'center'
+                valign: 'middle'
+
+        # Buttons Section (for actions like Absensi, Daftar Karyawan, etc.)
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.6
+            padding: 10
+            spacing: 10
+
+            Button:
+                text: "ABSENSI KARYAWAN"
+                size_hint_y: 0.2
+                background_color: 0.5, 0.5, 0.5, 1  # Gray button
+                color: 1, 1, 1, 1  # White text
+                font_size: 16
+
+            Button:
+                text: "DAFTAR KARYAWAN"
+                size_hint_y: 0.2
+                background_color: 0.5, 0.5, 0.5, 1  # Gray button
+                color: 1, 1, 1, 1  # White text
+                font_size: 16
+
+            Button:
+                text: "DAFTAR GAJI KARYAWAN"
+                size_hint_y: 0.2
+                background_color: 0.5, 0.5, 0.5, 1  # Gray button
+                color: 1, 1, 1, 1  # White text
+                font_size: 16
+
+            Button:
+                text: "CEK DATA GAJI KARYAWAN"
+                size_hint_y: 0.2
+                background_color: 0.5, 0.5, 0.5, 1  # Gray button
+                color: 1, 1, 1, 1  # White text
+                font_size: 16
+
+<ProfileScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        # Top Bar
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: 10
+            spacing: 10
+
+            Label:
+                text: "Hi, ADMIN1"
+                font_size: 18
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                size_hint_x: 0.2
+
+            Label:
+                text: "PT. ABADI SELALU"
+                font_size: 24
+                bold: True
+                halign: 'center'
+                valign: 'middle'
+                size_hint_x: 0.6
+
+            Button:
+                text: "Settings"
+                size_hint_x: 0.2
+
+        # Profile Information Section
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: 10
+            spacing: 10
+            size_hint_y: 0.4
+
+            Image:
+                source: 'profile_icon.png'  # Placeholder for profile image
+                allow_stretch: True
+                size_hint: 0.4, 1
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 10
+                size_hint: 0.6, 1
+
+                Label:
+                    text: "Agatapricilla Natasari"
+                    font_size: 20
+                    bold: True
+                    color: 0, 0, 0, 1
+
+        # Profile Details Section
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint_y: 0.4
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+
+                Image:
+                    source: 'calendar_icon.png'  # Placeholder for calendar icon
+                    size_hint: None, None
+                    size: 40, 40
+
+                Label:
+                    text: "Jakarta, 22 Desember 1999"
+                    font_size: 16
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+
+                Image:
+                    source: 'location_icon.png'  # Placeholder for location icon
+                    size_hint: None, None
+                    size: 40, 40
+
+                Label:
+                    text: "Jl. Srikandi no.99, Tangerang Selatan"
+                    font_size: 16
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+
+                Image:
+                    source: 'email_icon.png'  # Placeholder for email icon
+                    size_hint: None, None
+                    size: 40, 40
+
+                Label:
+                    text: "agatapricillanatasari@gmail.com"
+                    font_size: 16
+                    color: 0, 0, 0, 1
+
+        # Back Button
+        Button:
+            text: "Back"
+            size_hint_y: 0.1
+            on_press: app.root.current = 'main'
+
