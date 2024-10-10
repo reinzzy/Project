@@ -33,6 +33,20 @@ class LoginScreen(Screen):
         ok_button.bind(on_press=popup.dismiss)
 
         popup.open()
+        
+class SignupScreen(Screen):
+    def register(self):
+        username = self.ids.signup_username.text
+        password = self.ids.signup_password.text
+        verify_password = self.ids.verify_password.text
+
+        if password != verify_password:
+            self.ids.signup_message.text = "Password tidak cocok!"
+        elif username == "" or password == "":
+            self.ids.signup_message.text = "Username atau Password tidak boleh kosong!"
+        else:
+            self.ids.signup_message.text = "Registrasi berhasil!"
+            self.manager.current = 'login'
 
 class MainScreen(Screen):
     pass
@@ -50,6 +64,7 @@ class MyApp(App):
         sm.add_widget(MainScreen(name='main'))
         sm.add_widget(ProfileScreen(name='profile'))
         sm.add_widget(EmployeeListScreen(name='form'))
+        sm.add_widget(SignupScreen(name='signup'))
         return sm
 
 if __name__ == '__main__':

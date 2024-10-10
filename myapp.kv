@@ -25,6 +25,70 @@
             size_hint: (1, 0.2)
             on_press: root.login()
 
+        Button:
+            text: "SIGN UP"
+            size_hint: (1, 0.2)
+            on_press: root.manager.current = 'signup'
+
+<SignupScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 20
+
+        Label:
+            text: "SIGN UP"
+            font_size: 32
+            bold: True
+            color: 0, 0.5, 1, 1  # Biru lembut
+
+        TextInput:
+            id: signup_username
+            hint_text: "Username"
+            multiline: False
+            size_hint_y: 0.2
+            font_size: 18
+            padding: [10, 10]
+
+        TextInput:
+            id: signup_password
+            hint_text: "Password"
+            password: True
+            multiline: False
+            size_hint_y: 0.2
+            font_size: 18
+            padding: [10, 10]
+
+        TextInput:
+            id: verify_password
+            hint_text: "Verify Password"
+            password: True
+            multiline: False
+            size_hint_y: 0.2
+            font_size: 18
+            padding: [10, 10]
+
+        Label:
+            id: signup_message
+            text: ""
+            color: 1, 0, 0, 1  # Merah untuk pesan error
+            font_size: 14
+
+        Button:
+            text: "Daftar"
+            size_hint_y: 0.2
+            font_size: 18
+            background_color: 0, 0.5, 1, 1  # Biru lembut
+            on_press: root.register()
+
+        Button:
+            text: "Kembali ke Login"
+            size_hint_y: 0.2
+            font_size: 16
+            background_color: 0.7, 0.7, 0.7, 1  # Abu-abu
+            on_press: root.manager.current = 'login'
+
+
 <MainScreen>:
     BoxLayout:
         orientation: 'vertical'
