@@ -57,6 +57,9 @@ class ProfileScreen(Screen):
 class EmployeeListScreen(Screen):
     pass
 
+class AbsensiScreen(Screen):
+    pass
+
 class MyApp(App):
     def build(self):
         sm = ScreenManager()
@@ -65,6 +68,7 @@ class MyApp(App):
         sm.add_widget(ProfileScreen(name='profile'))
         sm.add_widget(EmployeeListScreen(name='form'))
         sm.add_widget(SignupScreen(name='signup'))
+        sm.add_widget(AbsensiScreen(name='absensi'))
         return sm
 
 if __name__ == '__main__':
