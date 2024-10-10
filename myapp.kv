@@ -28,6 +28,7 @@
         Button:
             text: "SIGN UP"
             size_hint: (1, 0.2)
+            background_color: 0, 0.5, 1, 1
             on_press: root.manager.current = 'signup'
 
 <SignupScreen>:
@@ -40,7 +41,7 @@
             text: "SIGN UP"
             font_size: 32
             bold: True
-            color: 0, 0.5, 1, 1  # Biru lembut
+            color: 0, 0.5, 1, 1
 
         TextInput:
             id: signup_username
@@ -71,21 +72,21 @@
         Label:
             id: signup_message
             text: ""
-            color: 1, 0, 0, 1  # Merah untuk pesan error
+            color: 1, 0, 0, 1
             font_size: 14
 
         Button:
             text: "Daftar"
             size_hint_y: 0.2
             font_size: 18
-            background_color: 0, 0.5, 1, 1  # Biru lembut
+            background_color: 0, 0.5, 1, 1
             on_press: root.register()
 
         Button:
             text: "Kembali ke Login"
             size_hint_y: 0.2
             font_size: 16
-            background_color: 0.7, 0.7, 0.7, 1  # Abu-abu
+            background_color: 0.7, 0.7, 0.7, 1
             on_press: root.manager.current = 'login'
 
 
