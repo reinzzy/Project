@@ -1,3 +1,4 @@
+#:kivy 2.3.0
 <LoginScreen>:
     BoxLayout:
         orientation: 'vertical'
@@ -192,6 +193,7 @@
                 background_color: 0.5, 0.5, 0.5, 1  
                 color: 1, 1, 1, 1  
                 font_size: 16
+                on_press: app.root.current = 'absensi'
 
             Button:
                 text: "DAFTAR KARYAWAN"
@@ -405,4 +407,72 @@
                 background_color: 0.2, 0.6, 0.8, 1
                 bold: True
                 font_size: 16
+
+<AbsensiScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        # Top section for back button and title
+        BoxLayout:
+            size_hint_y: 0.1
+
+            Button:
+                text: '←'
+                size_hint_x: 0.1
+                on_press: app.root.current = 'main'
+
+            Label:
+                text: "ABSENSI KARYAWAN\nPT. ABADI SELALU"
+                halign: "center"
+                size_hint_x: 0.9
+                text_size: self.size  # Allow text wrapping
+
+        # Table Layout
+        GridLayout:
+            cols: 3
+            size_hint_y: 0.8
+
+            # Add Header Row
+            Label:
+                text: "Nama"
+            Label:
+                text: "Tanggal"
+            Label:
+                text: "Keterangan"
+
+            # Attendance Data
+            # Use Python code to dynamically populate this part
+            Label:
+                text: "Dendi"
+            Label:
+                text: "✔ ✔ ✔"
+            Label:
+                text: "Sakit: 3x, Ijin: 1x"
+
+            Label:
+                text: "Rival"
+            Label:
+                text: "✘ ✔ ✔"
+            Label:
+                text: "Sakit: 2x, Ijin: 0x"
+
+            Label:
+                text: "Rezaldi"
+            Label:
+                text: "✔ ✔ ✔"
+            Label:
+                text: "Sakit: 2x, Ijin: 0x"
+
+            Label:
+                text: "Zaki"
+            Label:
+                text: "✔ ✔ ✘"
+            Label:
+                text: "Sakit: 4x, Ijin: 0x"
+
+<PreviousScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Previous Screen"
 
