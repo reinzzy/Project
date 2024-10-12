@@ -412,7 +412,6 @@
     BoxLayout:
         orientation: 'vertical'
 
-        # Top section for back button and title
         BoxLayout:
             size_hint_y: 0.1
 
@@ -425,14 +424,12 @@
                 text: "ABSENSI KARYAWAN\nPT. ABADI SELALU"
                 halign: "center"
                 size_hint_x: 0.9
-                text_size: self.size  # Allow text wrapping
+                text_size: self.size  
 
-        # Table Layout
         GridLayout:
             cols: 3
             size_hint_y: 0.8
 
-            # Add Header Row
             Label:
                 text: "Nama"
             Label:
@@ -440,8 +437,6 @@
             Label:
                 text: "Keterangan"
 
-            # Attendance Data
-            # Use Python code to dynamically populate this part
             Label:
                 text: "Dendi"
             Label:
