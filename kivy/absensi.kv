@@ -1,0 +1,57 @@
+#:kivy 2.3.0
+<AbsensiScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            size_hint_y: 0.1
+
+            Button:
+                text: '←'
+                size_hint_x: 0.1
+                on_press: app.root.current = 'main'
+
+            Label:
+                text: "ABSENSI KARYAWAN\nPT. ABADI SELALU"
+                halign: "center"
+                size_hint_x: 0.9
+                text_size: self.size  
+
+        GridLayout:
+            cols: 3
+            size_hint_y: 0.8
+
+            Label:
+                text: "Nama"
+            Label:
+                text: "Tanggal"
+            Label:
+                text: "Keterangan"
+
+            Label:
+                text: "Dendi"
+            Label:
+                text: "✔ ✔ ✔"
+            Label:
+                text: "Sakit: 3x, Ijin: 1x"
+
+            Label:
+                text: "Rival"
+            Label:
+                text: "✘ ✔ ✔"
+            Label:
+                text: "Sakit: 2x, Ijin: 0x"
+
+            Label:
+                text: "Rezaldi"
+            Label:
+                text: "✔ ✔ ✔"
+            Label:
+                text: "Sakit: 2x, Ijin: 0x"
+
+            Label:
+                text: "Zaki"
+            Label:
+                text: "✔ ✔ ✘"
+            Label:
+                text: "Sakit: 4x, Ijin: 0x"

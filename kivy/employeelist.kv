@@ -1,0 +1,83 @@
+#:kivy 2.3.0
+<EmployeeListScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        BoxLayout:
+            size_hint_y: 0.1
+            orientation: 'horizontal'
+            padding: 10
+
+            Button:
+                text: "< Kembali"
+                size_hint_x: 0.2
+                on_press: app.root.current = 'main'
+
+            Label:
+                text: "PT. ABADI SELALU"
+                font_size: 24
+                bold: True
+                halign: 'center'
+                valign: 'middle'
+
+        GridLayout:
+            cols: 1
+            padding: 10
+            spacing: 10
+            size_hint_y: 0.8
+
+            TextInput:
+                hint_text: "Nama Depan"
+                font_size: 16
+                size_hint_y: None
+                height: 40
+
+            TextInput:
+                hint_text: "Nama Tengah/Belakang"
+                font_size: 16
+                size_hint_y: None
+                height: 40
+
+            TextInput:
+                hint_text: "Job Desk"
+                font_size: 16
+                size_hint_y: None
+                height: 40
+
+            TextInput:
+                hint_text: "Status"
+                font_size: 16
+                size_hint_y: None
+                height: 40
+
+            TextInput:
+                hint_text: "Jabatan"
+                font_size: 16
+                size_hint_y: None
+                height: 40
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 50
+            spacing: 10
+
+            Button:
+                text: "Upload Foto (max 200KB)"
+                size_hint_x: 0.7
+                background_color: 0.5, 0.5, 0.5, 1
+                font_size: 14
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 50
+            padding: 10
+
+            Button:
+                text: "INPUT"
+                background_color: 0.2, 0.6, 0.8, 1
+                bold: True
+                font_size: 16

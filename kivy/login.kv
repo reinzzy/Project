@@ -1,0 +1,33 @@
+#:kivy 2.3.0
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 10
+
+        Label:
+            text: "LOGIN"
+            font_size: 32
+            bold: True
+
+        TextInput:
+            id: username
+            hint_text: "Username"
+            multiline: False
+
+        TextInput:
+            id: password
+            hint_text: "Password"
+            password: True
+            multiline: False
+
+        Button:
+            text: "LOGIN"
+            size_hint: (1, 0.2)
+            on_press: root.login()
+
+        Button:
+            text: "SIGN UP"
+            size_hint: (1, 0.2)
+            background_color: 0, 0.5, 1, 1
+            on_press: root.manager.current = 'signup'

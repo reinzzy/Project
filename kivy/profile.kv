@@ -1,0 +1,108 @@
+#:kivy 2.3.0
+<ProfileScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        canvas.before:
+            Color:
+                rgba: 0.8, 0.8, 0.8, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: 10
+            spacing: 10
+
+            Label:
+                text: "Hi, ADMIN1"
+                font_size: 18
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                size_hint_x: 0.2
+
+            Label:
+                text: "PT. ABADI SELALU"
+                font_size: 24
+                bold: True
+                halign: 'center'
+                valign: 'middle'
+                size_hint_x: 0.6
+
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: 10
+            spacing: 10
+            size_hint_y: 0.4
+
+            Image:
+                source: 'asset/profile_icon.png'  
+                allow_stretch: True
+                size_hint: 0.4, 1
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 10
+                size_hint: 0.6, 1
+
+                Label:
+                    text: "Agatapricilla Natasari"
+                    font_size: 20
+                    bold: True
+                    color: 0, 0, 0, 1
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint_y: 0.4
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+
+                Image:
+                    source: 'asset/calendar_icon.png'  
+                    size_hint: None, None
+                    size: 40, 40
+
+                Label:
+                    text: "Jakarta, 22 Desember 1999"
+                    font_size: 16
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+
+                Image:
+                    source: 'asset/location_icon.png'  
+                    size_hint: None, None
+                    size: 40, 40
+
+                Label:
+                    text: "Jl. Srikandi no.99, Tangerang Selatan"
+                    font_size: 16
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 10
+
+                Image:
+                    source: 'asset/email_icon.png'  
+                    size_hint: None, None
+                    size: 40, 40
+
+                Label:
+                    text: "agatapricillanatasari@gmail.com"
+                    font_size: 16
+                    color: 0, 0, 0, 1
+
+        Button:
+            text: "Back"
+            size_hint_y: 0.1
+            on_press: app.root.current = 'main'

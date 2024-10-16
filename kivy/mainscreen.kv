@@ -1,0 +1,126 @@
+#:kivy 2.3.0
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgb: 0, 0, 0 
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: 10
+            spacing: 10
+
+            Label:
+                text: "Hi, ADMIN1"
+                font_size: 18
+                color: 1, 1, 1, 1
+                halign: 'left'
+                valign: 'middle'
+                size_hint_x: 0.2
+
+            Label:
+                text: "PT. ABADI SELALU"
+                font_size: 24
+                bold: True
+                color: 1, 1, 1, 1
+                halign: 'center'
+                valign: 'middle'
+                size_hint_x: 0.6
+
+            Button:
+                size_hint: None, None
+                size: dp(50), dp(50)
+                background_normal: 'asset/profile_icon.png'
+                background_down: 'asset/profile_icon.png'
+                on_press: app.root.current = 'profile'
+
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: 10
+            spacing: 10
+
+            Label:
+                text: "[u]Data Karyawan Yang Sudah Ter-Rekap[/u]"
+                font_size: 16
+                markup: True
+                color: 0, 0.5, 1, 1
+                halign: 'center'
+                valign: 'middle'
+
+        BoxLayout:
+            size_hint_y: 0.2
+            spacing: 5
+
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgb: 0.3, 0.5, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgb: 1, 0.3, 0.3
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+        BoxLayout:
+            size_hint_y: 0.05
+            padding: 10
+            spacing: 10
+
+            Label:
+                text: "Sudah"
+                font_size: 16
+                color: 1, 1, 1, 1  
+                halign: 'center'
+                valign: 'middle'
+
+            Label:
+                text: "Belum"
+                font_size: 16
+                color: 1, 1, 1, 1  
+                halign: 'center'
+                valign: 'middle'
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.6
+            padding: 10
+            spacing: 10
+
+            Button:
+                text: "ABSENSI KARYAWAN"
+                size_hint_y: 0.2
+                background_color: 0.5, 0.5, 0.5, 1  
+                color: 1, 1, 1, 1  
+                font_size: 16
+                on_press: app.root.current = 'absensi'
+
+            Button:
+                text: "DAFTAR KARYAWAN"
+                size_hint_y: 0.2
+                background_color: 0.5, 0.5, 0.5, 1  
+                color: 1, 1, 1, 1  
+                font_size: 16
+                on_press: app.root.current = 'form'
+
+            Button:
+                text: "DAFTAR GAJI KARYAWAN"
+                size_hint_y: 0.2
+                background_color: 0.5, 0.5, 0.5, 1  
+                color: 1, 1, 1, 1  
+                font_size: 16
+
+            Button:
+                text: "CEK DATA GAJI KARYAWAN"
+                size_hint_y: 0.2
+                background_color: 0.5, 0.5, 0.5, 1  
+                color: 1, 1, 1, 1  
+                font_size: 16
