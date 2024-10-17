@@ -36,7 +36,7 @@
         BoxLayout:
             orientation: 'horizontal'
             padding: 10
-            spacing: 10
+            spacing: 5
             size_hint_y: 0.4
 
             Image:
@@ -46,7 +46,7 @@
 
             BoxLayout:
                 orientation: 'vertical'
-                spacing: 10
+                spacing: 5
                 size_hint: 0.6, 1
 
                 Label:
@@ -63,46 +63,85 @@
             BoxLayout:
                 orientation: 'horizontal'
                 spacing: 10
+                size_hint_y: None
 
                 Image:
                     source: 'asset/calendar_icon.png'  
                     size_hint: None, None
                     size: 40, 40
+                    allow_stretch: True
+                    center_y: self.parent.center_y
 
                 Label:
                     text: "Jakarta, 22 Desember 1999"
                     font_size: 16
                     color: 0, 0, 0, 1
+                    valign: 'middle'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    center_y: self.parent.center_y
 
             BoxLayout:
                 orientation: 'horizontal'
                 spacing: 10
+                size_hint_y: None
 
                 Image:
                     source: 'asset/location_icon.png'  
                     size_hint: None, None
                     size: 40, 40
+                    allow_stretch: True
+                    center_y: self.parent.center_y
 
                 Label:
                     text: "Jl. Srikandi no.99, Tangerang Selatan"
                     font_size: 16
                     color: 0, 0, 0, 1
+                    valign: 'middle'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    center_y: self.parent.center_y
 
             BoxLayout:
                 orientation: 'horizontal'
                 spacing: 10
+                size_hint_y: None
 
                 Image:
                     source: 'asset/email_icon.png'  
                     size_hint: None, None
                     size: 40, 40
+                    allow_stretch: True
+                    center_y: self.parent.center_y
 
                 Label:
                     text: "agatapricillanatasari@gmail.com"
                     font_size: 16
                     color: 0, 0, 0, 1
+                    valign: 'middle'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    center_y: self.parent.center_y
+
+        Widget:
+            size_hint_y: 0.4
+        
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.1
+        spacing: 200
+        height: 60
 
         Button:
             text: "Back"
-            size_hint_y: 0.1
+            size_hint_y: 0.5
             on_press: app.root.current = 'main'
+
+        Button:
+            text: "Logout"
+            size_hint_y: 0.5
+            on_press: app.root.current = 'login'
