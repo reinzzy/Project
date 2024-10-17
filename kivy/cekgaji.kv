@@ -1,0 +1,163 @@
+#:kivy 2.3.0
+<CekGaji>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 10]
+        spacing: 10
+
+        canvas.before:
+            Color:
+                rgba: 0.8, 0.8, 0.8, 1 
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: 0.1
+            orientation: 'horizontal'
+            spacing: 10
+
+            Button:
+                size_hint: None, None
+                size: 40, 40
+                text: 'Back'
+                font_size: '14sp'
+                on_press: app.root.current = 'main'
+
+        Label:
+            text: "Cek Data Gaji Karyawan"
+            font_size: '18sp'
+            bold: True
+            halign: 'center'
+            valign: 'middle'
+            size_hint_y: 0.1
+            color: 1, 1, 1, 1
+
+        GridLayout:
+            cols: 4
+            size_hint_y: 0.4
+            spacing: 5
+            padding: [5, 5]
+            row_default_height: '40dp'
+
+            # Column Headers
+            BoxLayout:
+                Label:
+                    text: 'No'
+                    font_size: '14sp'
+                    bold: True
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'Nama'
+                    font_size: '14sp'
+                    bold: True
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'ID Pegawai'
+                    font_size: '14sp'
+                    bold: True
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'Status'
+                    font_size: '14sp'
+                    bold: True
+                    color: 0, 0, 0, 1
+
+            # Row 1
+            BoxLayout:
+                Label:
+                    text: '1'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'Dendi'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'ID402'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Button:
+                    text: 'Open'
+                    font_size: '12sp'
+                    on_press: app.root.current = 'main'
+
+            # Row 2
+            BoxLayout:
+                Label:
+                    text: '2'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'Rival'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'ID432'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Button:
+                    text: 'Open'
+                    font_size: '12sp'
+                    on_press: app.root.current = 'main'
+
+            # Row 3
+            BoxLayout:
+                Label:
+                    text: '3'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'Rezaldi'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'ID523'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Button:
+                    text: 'Open'
+                    font_size: '12sp'
+                    on_press: app.root.current = 'main'
+
+            # Row 4
+            BoxLayout:
+                Label:
+                    text: '4'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'Zaki'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Label:
+                    text: 'ID672'
+                    font_size: '12sp'
+                    color: 0, 0, 0, 1
+            BoxLayout:
+                Button:
+                    text: 'Open'
+                    font_size: '12sp'
+                    on_press: app.root.current = 'main'
+
+        Label:
+            text: "*Tekan Status Untuk Melihat Rekap"
+            font_size: '12sp'
+            halign: 'left'
+            valign: 'middle'
+            color: 0, 0, 0, 1
+            size_hint_y: 0.1
