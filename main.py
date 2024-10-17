@@ -8,6 +8,7 @@ from screen.main_screen import MainScreen
 from screen.profile_screen import ProfileScreen
 from screen.employeelist_screen import EmployeeListScreen
 from screen.absensi_screen import AbsensiScreen
+from screen.daftargaji_screen import DaftarGaji
 
 Window.size = (360, 640)
 
@@ -23,6 +24,7 @@ class MyApp(App):
         sm.add_widget(EmployeeListScreen(name='form'))
         sm.add_widget(SignupScreen(name='signup'))
         sm.add_widget(AbsensiScreen(name='absensi'))
+        sm.add_widget(DaftarGaji(name='daftargaji'))
         return sm
 
 if __name__ == '__main__':

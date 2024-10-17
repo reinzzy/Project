@@ -1,0 +1,343 @@
+#:kivy 2.3.0
+<DaftarGaji>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 10]
+        spacing: 10
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: 0.1
+            orientation: 'horizontal'
+            spacing: 10
+
+            Button:
+                size_hint: None, None
+                size: 40, 40
+                text: 'Back'
+                font_size: '14sp'
+                on_press: app.root.current = 'main'
+
+            Label:
+                text: "PT. ABADI SELALU"
+                font_size: '18sp'
+                bold: True
+                halign: 'center'
+                valign: 'middle'
+                size_hint_x: 0.7
+                color: 1, 1, 1, 1
+
+        Label:
+            text: "Daftar Gaji Karyawan"
+            font_size: '16sp'
+            bold: True
+            halign: 'center'
+            valign: 'middle'
+            size_hint_y: 0.1
+            color: 1, 1, 1, 1
+
+        GridLayout:
+            cols: 7
+            size_hint_y: 0.4
+            spacing: 5
+            padding: [5, 5]
+            row_default_height: '40dp'
+
+            Label:
+                text: 'Nama'
+                font_size: '14sp'
+                bold: True
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1  # Warna abu-abu gelap
+                    Line:
+                        width: 1.5
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'ID'
+                font_size: '14sp'
+                bold: True
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1
+                    Line:
+                        width: 1.5
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'Jabatan'
+                font_size: '14sp'
+                bold: True
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1
+                    Line:
+                        width: 1.5
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'P'
+                font_size: '14sp'
+                bold: True
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1
+                    Line:
+                        width: 1.5
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'T'
+                font_size: '14sp'
+                bold: True
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1
+                    Line:
+                        width: 1.5
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'L'
+                font_size: '14sp'
+                bold: True
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1
+                    Line:
+                        width: 1.5
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'A'
+                font_size: '14sp'
+                bold: True
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.2, 1
+                    Line:
+                        width: 1.5
+                        rectangle: self.x, self.y, self.width, self.height
+
+            Label:
+                text: 'Dendi'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1  # Warna latar belakang abu-abu
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '402'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'MM'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '2.500.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '900.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '500.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '300.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+
+            Label:
+                text: 'Rival'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '432'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'MM'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '2.500.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '900.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '500.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '300.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+
+            Label:
+                text: 'Maya'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '502'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: 'HR'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '3.000.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '1.000.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Label:
+                text: '700.000'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+
+            Label:
+                text: 'Siti'
+                font_size: '12sp'
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color:
+                        rgba: 0.1, 0.1, 0.1, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            
