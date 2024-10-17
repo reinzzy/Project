@@ -35,6 +35,9 @@ class LoginScreen(Screen):
         else:
             try:
                 user = auth.sign_in_with_email_and_password(email, password)
+                user_data = db.child("users").child(user['localId']).get().val()
+                username = user_data['username'] if user_data else "User"
+                self.manager.get_screen('main').set_username(username)
                 self.show_popup("Login Berhasil", "Selamat datang!")
                 self.manager.current = 'main'
             except Exception as e:

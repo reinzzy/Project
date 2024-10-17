@@ -6,4 +6,5 @@ kv_path = os.path.join(os.path.dirname(__file__), '../kivy/mainscreen.kv')
 Builder.load_file(kv_path)
 
 class MainScreen(Screen):
-    pass
+    def set_username(self, username):
+        self.ids.username_label.text = f"Welcome, {username}"
