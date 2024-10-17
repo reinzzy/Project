@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "635697293104",
+    "firebase_url": "https://projectpython-58225-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "projectpython-58225",
+    "storage_bucket": "projectpython-58225.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635697293104:android:afe47f84df46cc64020af5",
+        "android_client_info": {
+          "package_name": "com.kel6.appgaji"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMDIZ_s0HG3Ozh_1tccSCaWmXC-0kZo1Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
