@@ -144,4 +144,32 @@
         Button:
             text: "Logout"
             size_hint_y: 0.5
-            on_press: app.root.current = 'login'
+            on_press: root.show_logout_confirmation()
+
+<LogoutPopup>:
+    title: "Konfirmasi Logout"
+    size_hint: 0.7, 0.4
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        Label:
+            text: "Apakah Anda yakin ingin logout?"
+            font_size: 18
+            halign: 'center'
+            valign: 'middle'
+
+        BoxLayout:
+            size_hint_y: 0.3
+            spacing: 10
+
+            Button:
+                text: "Ya"
+                on_press: root.on_confirm()
+
+            Button:
+                text: "Tidak"
+                on_press: root.dismiss()
