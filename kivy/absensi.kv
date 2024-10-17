@@ -5,10 +5,12 @@
 
         BoxLayout:
             size_hint_y: 0.1
+            orientation: 'horizontal'
+            padding: 10
 
             Button:
-                text: '←'
-                size_hint_x: 0.1
+                text: 'Back'
+                size_hint_x: 0.2
                 on_press: app.root.current = 'main'
 
             Label:
