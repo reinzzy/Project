@@ -7,7 +7,7 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.lang import Builder
 
-# Firebase Configuration
+# Konfigurasi Firebase
 firebase_config = {
     "apiKey": "AIzaSyCMDIZ_s0HG3Ozh_1tccSCaWmXC-0kZo1Y",
     "authDomain": "projectpython-58225.firebaseapp.com",
@@ -18,10 +18,11 @@ firebase_config = {
     "appId": "1:635697293104:android:afe47f84df46cc64020af5"
 }
 
+# Inisialisasi Firebase
 firebase = pyrebase.initialize_app(firebase_config)
-auth = firebase.auth()
 db = firebase.database()
 
+# Load file Kivy
 kv_path = os.path.join(os.path.dirname(__file__), '../kivy/login.kv')
 Builder.load_file(kv_path)
 
@@ -32,22 +33,27 @@ class LoginScreen(Screen):
 
         if email == "" or password == "":
             self.show_popup("Login Gagal", "Email atau Password tidak boleh kosong!")
-        else:
-            try:
-                user = auth.sign_in_with_email_and_password(email, password)
-                user_data = db.child("users").child(user['localId']).get().val()
-                username = user_data['username'] if user_data else "User"
-                self.manager.get_screen('main').set_username(username)
-                self.show_popup("Login Berhasil", "Selamat datang!")
-                self.manager.current = 'main'
-            except Exception as e:
-                error_message = str(e)
-                if "EMAIL_NOT_FOUND" in error_message:
-                    self.show_popup("Login Gagal", "Akun tidak ditemukan.")
-                elif "INVALID_PASSWORD" in error_message:
-                    self.show_popup("Login Gagal", "Password salah.")
-                else:
-                    self.show_popup("Login Gagal", "Terjadi kesalahan saat login.")
+            return
+        
+        try:
+            # Mengambil semua pengguna dari Realtime Database
+            users = db.child("users").get()
+
+            # Memeriksa apakah email dan password cocok
+            for user in users.each():
+                user_data = user.val()
+                if user_data['email'] == email and user_data['password'] == password:
+                    username = user_data['username']  # Ambil username
+                    self.manager.get_screen('main').set_username(username)
+                    self.show_popup("Login Berhasil", "Selamat datang!")
+                    self.manager.current = 'main'
+                    return
+
+            # Jika tidak ada yang cocok
+            self.show_popup("Login Gagal", "Email atau Password salah.")
+
+        except Exception as e:
+            self.show_popup("Login Gagal", f"Terjadi kesalahan: {str(e)}")
 
     def go_to_resetpw(self):
         self.manager.current = 'resetpw'
@@ -64,7 +70,5 @@ class LoginScreen(Screen):
         popup_layout.add_widget(ok_button)
 
         popup = Popup(title=title, content=popup_layout, size_hint=(0.6, 0.4))
-
         ok_button.bind(on_press=popup.dismiss)
-
         popup.open()
