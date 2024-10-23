@@ -7,7 +7,7 @@
 
         canvas.before:
             Color:
-                rgba: 0.8, 0.8, 0.8, 1 
+                rgba: 0, 0, 0, 1  # Black background
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -31,14 +31,15 @@
             halign: 'center'
             valign: 'middle'
             size_hint_y: 0.1
-            color: 1, 1, 1, 1
+            color: 1, 1, 1, 1  # White text
 
         GridLayout:
             cols: 4
             size_hint_y: 0.4
             spacing: 5
             padding: [5, 5]
-            row_default_height: '40dp'
+            row_default_height: '40dp'  # Ensuring row height is consistent
+            row_force_default: True
 
             # Column Headers
             BoxLayout:
@@ -46,118 +47,126 @@
                     text: 'No'
                     font_size: '14sp'
                     bold: True
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'Nama'
                     font_size: '14sp'
                     bold: True
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'ID Pegawai'
                     font_size: '14sp'
                     bold: True
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'Status'
                     font_size: '14sp'
                     bold: True
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
 
             # Row 1
             BoxLayout:
                 Label:
                     text: '1'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'Dendi'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'ID402'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Button:
                     text: 'Open'
                     font_size: '12sp'
-                    on_press: app.root.current = 'main'
+                    color: 1, 1, 1, 1
+                    background_normal: ''
+                    background_color: 0.1, 0.1, 0.1, 1  # Matching button color
 
             # Row 2
             BoxLayout:
                 Label:
                     text: '2'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'Rival'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'ID432'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Button:
                     text: 'Open'
                     font_size: '12sp'
-                    on_press: app.root.current = 'main'
+                    color: 1, 1, 1, 1
+                    background_normal: ''
+                    background_color: 0.1, 0.1, 0.1, 1
 
             # Row 3
             BoxLayout:
                 Label:
                     text: '3'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'Rezaldi'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'ID523'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Button:
                     text: 'Open'
                     font_size: '12sp'
-                    on_press: app.root.current = 'main'
+                    color: 1, 1, 1, 1
+                    background_normal: ''
+                    background_color: 0.1, 0.1, 0.1, 1
 
             # Row 4
             BoxLayout:
                 Label:
                     text: '4'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'Zaki'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Label:
                     text: 'ID672'
                     font_size: '12sp'
-                    color: 0, 0, 0, 1
+                    color: 1, 1, 1, 1
             BoxLayout:
                 Button:
                     text: 'Open'
                     font_size: '12sp'
-                    on_press: app.root.current = 'main'
+                    color: 1, 1, 1, 1
+                    background_normal: ''
+                    background_color: 0.1, 0.1, 0.1, 1
 
         Label:
             text: "*Tekan Status Untuk Melihat Rekap"
             font_size: '12sp'
             halign: 'left'
             valign: 'middle'
-            color: 0, 0, 0, 1
+            color: 1, 1, 1, 1  # White text
             size_hint_y: 0.1
