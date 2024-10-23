@@ -1,0 +1,30 @@
+<ResetPasswordScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        TextInput:
+            id: email_input
+            hint_text: "Masukkan email Anda"
+            multiline: False
+
+        TextInput:
+            id: new_password_input
+            hint_text: "Masukkan password baru"
+            password: True
+            multiline: False
+
+        Label:
+            text: root.captcha_text  # Mengambil nilai dari captcha_text
+            font_size: '20sp'
+            bold: True
+
+        TextInput:
+            id: captcha_input
+            hint_text: "Masukkan teks captcha"
+            multiline: False
+
+        Button:
+            text: "Ganti Password"
+            on_press: root.reset_password(self)

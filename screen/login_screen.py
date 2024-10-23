@@ -49,6 +49,9 @@ class LoginScreen(Screen):
                 else:
                     self.show_popup("Login Gagal", "Terjadi kesalahan saat login.")
 
+    def go_to_resetpw(self):
+        self.manager.current = 'resetpw'
+
     def go_to_signup(self):
         self.manager.current = 'signup'
 

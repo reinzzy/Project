@@ -10,6 +10,7 @@ from screen.employeelist_screen import EmployeeListScreen
 from screen.absensi_screen import AbsensiScreen
 from screen.daftargaji_screen import DaftarGaji
 from screen.cekgaji_screen import CekGaji
+from screen.resetpw_screen import ResetPasswordScreen
 
 Window.size = (360, 640)
 
@@ -27,6 +28,7 @@ class MyApp(App):
         sm.add_widget(AbsensiScreen(name='absensi'))
         sm.add_widget(DaftarGaji(name='daftargaji'))
         sm.add_widget(CekGaji(name='cekgaji'))
+        sm.add_widget(ResetPasswordScreen(name='resetpw'))
         return sm
 
 if __name__ == '__main__':

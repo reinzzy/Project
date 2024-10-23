@@ -38,8 +38,10 @@ class SignupScreen(Screen):
                 user_data = {
                     "username": username,
                     "email": email,
+                    "password": password,
                     "uid": user["localId"]
                 }
+
                 db.child("users").child(user["localId"]).set(user_data)
 
                 self.ids.signup_message.text = "Registrasi berhasil!"
