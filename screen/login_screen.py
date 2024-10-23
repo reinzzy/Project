@@ -7,7 +7,6 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.lang import Builder
 
-# Konfigurasi Firebase
 firebase_config = {
     "apiKey": "AIzaSyCMDIZ_s0HG3Ozh_1tccSCaWmXC-0kZo1Y",
     "authDomain": "projectpython-58225.firebaseapp.com",
@@ -18,11 +17,9 @@ firebase_config = {
     "appId": "1:635697293104:android:afe47f84df46cc64020af5"
 }
 
-# Inisialisasi Firebase
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
-# Load file Kivy
 kv_path = os.path.join(os.path.dirname(__file__), '../kivy/login.kv')
 Builder.load_file(kv_path)
 
@@ -36,20 +33,17 @@ class LoginScreen(Screen):
             return
         
         try:
-            # Mengambil semua pengguna dari Realtime Database
             users = db.child("users").get()
 
-            # Memeriksa apakah email dan password cocok
             for user in users.each():
                 user_data = user.val()
                 if user_data['email'] == email and user_data['password'] == password:
-                    username = user_data['username']  # Ambil username
+                    username = user_data['username']
                     self.manager.get_screen('main').set_username(username)
                     self.show_popup("Login Berhasil", "Selamat datang!")
                     self.manager.current = 'main'
                     return
 
-            # Jika tidak ada yang cocok
             self.show_popup("Login Gagal", "Email atau Password salah.")
 
         except Exception as e:

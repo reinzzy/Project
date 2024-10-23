@@ -11,7 +11,6 @@ from kivy.properties import StringProperty
 import random
 import string
 
-# Konfigurasi Firebase
 firebase_config = {
     "apiKey": "AIzaSyCMDIZ_s0HG3Ozh_1tccSCaWmXC-0kZo1Y",
     "authDomain": "projectpython-58225.firebaseapp.com",
