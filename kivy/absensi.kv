@@ -2,6 +2,12 @@
 <AbsensiScreen>:
     BoxLayout:
         orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1  # Black background color
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
         BoxLayout:
             size_hint_y: 0.1
@@ -12,48 +18,51 @@
                 text: 'Back'
                 size_hint_x: 0.2
                 on_press: app.root.current = 'main'
+                background_color: 0.1, 0.1, 0.1, 1  # Dark gray button background
+                color: 1, 1, 1, 1  # White text
 
             Label:
                 text: "ABSENSI KARYAWAN\nPT. ABADI SELALU"
                 halign: "center"
                 size_hint_x: 0.9
+                color: 1, 1, 1, 1  # White text
                 text_size: self.size  
 
-        GridLayout:
-            cols: 3
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
             size_hint_y: 0.8
 
-            Label:
-                text: "Nama"
-            Label:
-                text: "Tanggal"
-            Label:
-                text: "Keterangan"
+            MDList:
+                id: employee_list
+                background_color: 0, 0, 0, 1  # Black background
+                color: 1, 1, 1, 1  # White text
 
-            Label:
-                text: "Dendi"
-            Label:
-                text: "✔ ✔ ✔"
-            Label:
-                text: "Sakit: 3x, Ijin: 1x"
+<EmployeeDetailsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1  # Black background color
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
-            Label:
-                text: "Rival"
-            Label:
-                text: "✘ ✔ ✔"
-            Label:
-                text: "Sakit: 2x, Ijin: 0x"
+        Label:
+            id: employee_name
+            text: "Employee Name"
+            font_size: '24sp'
+            size_hint_y: 0.2
+            color: 1, 1, 1, 1  # White text
 
-            Label:
-                text: "Rezaldi"
-            Label:
-                text: "✔ ✔ ✔"
-            Label:
-                text: "Sakit: 2x, Ijin: 0x"
+        Label:
+            text: "Details about the employee will be shown here."
+            size_hint_y: 0.6
+            color: 1, 1, 1, 1  # White text
 
-            Label:
-                text: "Zaki"
-            Label:
-                text: "✔ ✔ ✘"
-            Label:
-                text: "Sakit: 4x, Ijin: 0x"
+        Button:
+            text: 'Back to Absensi'
+            size_hint_y: 0.2
+            background_color: 0.1, 0.1, 0.1, 1  # Dark gray button background
+            color: 1, 1, 1, 1  # White text
+            on_press: app.root.current = 'absensi'
