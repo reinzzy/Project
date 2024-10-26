@@ -31,24 +31,32 @@ class LoginScreen(Screen):
         if email == "" or password == "":
             self.show_popup("Login Gagal", "Email atau Password tidak boleh kosong!")
             return
-        
+
         try:
             users = db.child("users").get()
-
             for user in users.each():
                 user_data = user.val()
                 if user_data['email'] == email and user_data['password'] == password:
                     username = user_data['username']
+                    role = user_data['role']
+                    user_id = user_data['uid']
+
                     self.manager.get_screen('main').set_username(username)
-                    self.show_popup("Login Berhasil", "Selamat datang!")
-                    self.manager.current = 'main'
+                    self.manager.get_screen('user_absen').set_user_id(user_id)
+
+                    if role == 'Admin':
+                        self.manager.current = 'main'
+                    else:
+                        self.manager.current = 'user_absen'
+
+                    self.show_popup("Login Berhasil", f"Selamat datang, {username}!")
                     return
 
             self.show_popup("Login Gagal", "Email atau Password salah.")
 
         except Exception as e:
             self.show_popup("Login Gagal", f"Terjadi kesalahan: {str(e)}")
-
+            
     def go_to_resetpw(self):
         self.manager.current = 'resetpw'
 

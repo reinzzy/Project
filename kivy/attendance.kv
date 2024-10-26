@@ -1,0 +1,24 @@
+#:kivy 2.3.0
+<AttendanceScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        
+        Label:
+            id: username_label
+            text: "Username: "
+            font_size: 20
+        
+        Label:
+            text: "Pilih Kategori Absen"
+            font_size: 18
+
+        Spinner:
+            id: attendance_spinner
+            text: "Pilih Kategori"
+            values: ["Pilih Kategori", "Masuk", "Izin", "Sakit"]
+        
+        Button:
+            text: "Kirim Absen"
+            on_release: root.submit_attendance()

@@ -1,0 +1,26 @@
+<UserScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        Label:
+            id: welcome_label
+            text: "Selamat Datang, User!"
+            font_size: 24
+            size_hint_y: None
+            height: self.texture_size[1] + 20
+
+        Button:
+            text: "Halaman Absensi"
+            font_size: 18
+            size_hint_y: None
+            height: 50
+            on_release: root.go_to_attendance()
+
+        Button:
+            text: "Logout"
+            font_size: 18
+            size_hint_y: None
+            height: 50
+            on_release: app.root.current = 'login'

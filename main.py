@@ -11,16 +11,17 @@ from screen.absensi_screen import AbsensiScreen, EmployeeDetailsScreen
 from screen.daftargaji_screen import DaftarGaji
 from screen.cekgaji_screen import CekGaji
 from screen.resetpw_screen import ResetPasswordScreen
+from screen.user_screen import UserScreen
+from screen.attendance_screen import AttendanceScreen
 
-# Set mobile screen size
 Window.size = (360, 640)
 Config.set('input', 'mouse', 'mouse,disable_multitouch')
 Config.set('kivy', 'keyboard_mode', 'system')
 
 class MyApp(MDApp):
     def build(self):
-        self.theme_cls.theme_style = "Dark"  # Set dark theme
-        self.theme_cls.primary_palette = "BlueGray"  # Set primary color
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = "BlueGray"
 
         sm = ScreenManager()
         sm.add_widget(LoginScreen(name='login'))
@@ -33,6 +34,8 @@ class MyApp(MDApp):
         sm.add_widget(DaftarGaji(name='daftargaji'))
         sm.add_widget(CekGaji(name='cekgaji'))
         sm.add_widget(ResetPasswordScreen(name='resetpw'))
+        sm.add_widget(UserScreen(name='user_absen'))
+        sm.add_widget(AttendanceScreen(name='attendance'))
         return sm
 
 if __name__ == '__main__':

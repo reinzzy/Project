@@ -26,8 +26,11 @@ class SignupScreen(Screen):
         email = self.ids.signup_email.text
         password = self.ids.signup_password.text
         verify_password = self.ids.verify_password.text
+        role = self.ids.role_spinner.text 
 
-        if password != verify_password:
+        if role == "Pilih Role":
+            self.ids.signup_message.text = "Silakan pilih role!"
+        elif password != verify_password:
             self.ids.signup_message.text = "Password tidak cocok!"
         elif username == "" or email == "" or password == "":
             self.ids.signup_message.text = "Semua kolom harus diisi!"
@@ -39,7 +42,8 @@ class SignupScreen(Screen):
                     "username": username,
                     "email": email,
                     "password": password,
-                    "uid": user["localId"]
+                    "uid": user["localId"],
+                    "role": role
                 }
 
                 db.child("users").child(user["localId"]).set(user_data)
