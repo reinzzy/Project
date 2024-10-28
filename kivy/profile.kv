@@ -2,149 +2,96 @@
 <ProfileScreen>:
     BoxLayout:
         orientation: 'vertical'
-        padding: 20
+        padding: [20, 20]
         spacing: 10
-
-        canvas.before:
-            Color:
-                rgba: 0.8, 0.8, 0.8, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        BoxLayout:
-            size_hint_y: 0.1
-            padding: 10
-            spacing: 10
-
-            Label:
-                text: "Hi, ADMIN1"
-                font_size: 18
-                color: 0, 0, 0, 1
-                halign: 'left'
-                valign: 'middle'
-                size_hint_x: 0.2
-
-            Label:
-                text: "PT. ABADI SELALU"
-                font_size: 24
-                bold: True
-                halign: 'center'
-                valign: 'middle'
-                size_hint_x: 0.6
-
-        BoxLayout:
-            orientation: 'horizontal'
-            padding: 10
-            spacing: 5
-            size_hint_y: 0.4
-
-            Image:
-                source: 'asset/profile_icon.png'  
-                allow_stretch: True
-                size_hint: 0.4, 1
-
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: 5
-                size_hint: 0.6, 1
-
-                Label:
-                    text: "Agatapricilla Natasari"
-                    font_size: 20
-                    bold: True
-                    color: 0, 0, 0, 1
 
         BoxLayout:
             orientation: 'vertical'
+            size_hint: 0.9, None  # Membatasi lebar agar tidak over
+            height: '150dp'
+            padding: [15, 15]
             spacing: 10
-            size_hint_y: 0.4
+            pos_hint: {'center_x': 0.5}  # Pusatkan layout agar seimbang
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.6, 0.8, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [20,]  # Tambahkan radius lebih besar agar lebih bulat
 
-            BoxLayout:
-                orientation: 'horizontal'
-                spacing: 10
-                size_hint_y: None
+            Label:
+                text: "Profil Admin"
+                font_size: 24
+                color: 1, 1, 1, 1
+                bold: True
+                halign: 'center'
 
-                Image:
-                    source: 'asset/calendar_icon.png'  
-                    size_hint: None, None
-                    size: 40, 40
-                    allow_stretch: True
-                    center_y: self.parent.center_y
+        Image:
+            id: profile_image
+            source: 'asset/profile_icon.png'  # Gambar default
+            size_hint: None, None
+            size: 120, 120
+            allow_stretch: True
+            keep_ratio: True
+            pos_hint: {'center_x': 0.5}
 
-                Label:
-                    text: "Jakarta, 22 Desember 1999"
-                    font_size: 16
-                    color: 0, 0, 0, 1
-                    valign: 'middle'
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    center_y: self.parent.center_y
+        Button:
+            text: 'Unggah Foto'
+            size_hint_y: None
+            height: '40dp'
+            on_release: root.open_filechooser()
+            background_color: 0.2, 0.6, 0.8, 1
+            color: 1, 1, 1, 1
 
-            BoxLayout:
-                orientation: 'horizontal'
-                spacing: 10
-                size_hint_y: None
-
-                Image:
-                    source: 'asset/location_icon.png'  
-                    size_hint: None, None
-                    size: 40, 40
-                    allow_stretch: True
-                    center_y: self.parent.center_y
-
-                Label:
-                    text: "Jl. Srikandi no.99, Tangerang Selatan"
-                    font_size: 16
-                    color: 0, 0, 0, 1
-                    valign: 'middle'
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    center_y: self.parent.center_y
-
-            BoxLayout:
-                orientation: 'horizontal'
-                spacing: 10
-                size_hint_y: None
-
-                Image:
-                    source: 'asset/email_icon.png'  
-                    size_hint: None, None
-                    size: 40, 40
-                    allow_stretch: True
-                    center_y: self.parent.center_y
-
-                Label:
-                    text: "agatapricillanatasari@gmail.com"
-                    font_size: 16
-                    color: 0, 0, 0, 1
-                    valign: 'middle'
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    center_y: self.parent.center_y
-
-        Widget:
-            size_hint_y: 0.4
+        MDTextField:
+            id: name_input
+            hint_text: "Nama Lengkap"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
         
-    BoxLayout:
-        size_hint_y: None
-        height: 100
+        MDTextField:
+            id: birth_date_input
+            hint_text: "Tanggal Lahir (DD-MM-YYYY)"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
 
-    BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: 0.1
-        spacing: 200
-        height: 60
+        MDTextField:
+            id: address_input
+            hint_text: "Alamat"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
+
+        MDTextField:
+            id: email_input
+            hint_text: "Email"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
 
         Button:
-            text: "Back"
-            size_hint_y: 0.5
-            on_press: app.root.current = 'main'
+            text: "Konfirmasi"
+            size_hint_y: None
+            height: 40
+            on_release: root.save_profile()
 
-        Button:
-            text: "Logout"
-            size_hint_y: 0.5
-            on_press: root.show_logout_confirmation()
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '50dp'
+            spacing: 20
+            padding: [20, 20]
+
+            Button:
+                text: 'Kembali ke Main'
+                on_release: app.root.current = 'main'
+                background_color: 0.3, 0.5, 0.8, 1
+                color: 1, 1, 1, 1
+
+            Button:
+                text: 'Logout'
+                on_release: root.show_logout_confirmation()
+                background_color: 0.8, 0.2, 0.2, 1
+                color: 1, 1, 1, 1
 
 <LogoutPopup>:
     title: "Konfirmasi Logout"
