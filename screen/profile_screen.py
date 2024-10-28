@@ -10,7 +10,6 @@ from kivy.uix.label import Label
 from kivymd.uix.textfield import MDTextField
 import pyrebase
 
-# Firebase Configuration
 firebase_config = {
     "apiKey": "AIzaSyCMDIZ_s0HG3Ozh_1tccSCaWmXC-0kZo1Y",
     "authDomain": "projectpython-58225.firebaseapp.com",
@@ -30,12 +29,10 @@ Builder.load_file(kv_path)
 
 class ProfileScreen(Screen):
     def on_enter(self):
-        # Panggil metode untuk memuat profil dari database
         self.load_profile()
 
     def load_profile(self):
         try:
-            # Ambil data profil dari database
             profile_data = db.child("profile").get()
             if profile_data.each():
                 profile_info = profile_data.val()
@@ -43,7 +40,7 @@ class ProfileScreen(Screen):
                 self.ids.birth_date_input.text = profile_info.get("birth_date", "")
                 self.ids.address_input.text = profile_info.get("address", "")
                 self.ids.email_input.text = profile_info.get("email", "")
-                self.ids.profile_image.source = profile_info.get("profile_image", 'asset/profile_icon.png')  # Gambar default jika tidak ada
+                self.ids.profile_image.source = profile_info.get("profile_image", 'asset/profile_icon.png')
                 print("Data profil berhasil dimuat!")
             else:
                 print("Tidak ada data profil ditemukan.")
@@ -51,27 +48,21 @@ class ProfileScreen(Screen):
             print(f"Error memuat data profil: {e}")
 
     def open_filechooser(self):
-        # Buka popup filechooser untuk memilih gambar
         content = FileChooserPopup(select=self.upload_photo)
         content.open()
 
     def upload_photo(self, file_path):
         try:
-            # Upload file ke Firebase Storage
             file_name = os.path.basename(file_path)
             storage.child("profile_photos/" + file_name).put(file_path)
-            # Dapatkan URL unduhan dari Firebase Storage
             download_url = storage.child("profile_photos/" + file_name).get_url(None)
-            # Setel gambar profil di Image widget
             self.ids.profile_image.source = download_url
-            # Simpan URL gambar di database
             db.child("profile").update({"profile_image": download_url})
             print("Foto profil berhasil diunggah dan disimpan di database!")
         except Exception as e:
             print(f"Error mengunggah foto profil: {e}")
 
     def save_profile(self):
-        # Mengambil data dari input dan menyimpannya di database Firebase
         name = self.ids.name_input.text
         birth_date = self.ids.birth_date_input.text
         address = self.ids.address_input.text
@@ -84,7 +75,6 @@ class ProfileScreen(Screen):
         }
         
         try:
-            # Simpan data profil di Firebase di bawah node "profile"
             db.child("profile").set(profile_data)
             print("Data profil berhasil disimpan!")
         except Exception as e:
@@ -102,18 +92,16 @@ class FileChooserPopup(Popup):
     def __init__(self, select, **kwargs):
         super(FileChooserPopup, self).__init__(**kwargs)
         self.select = select
-        self.selected_file = None  # Inisialisasi atribut selected_file
+        self.selected_file = None
         self.title = "Pilih Foto"
         self.size_hint = (0.9, 0.9)
 
-        # Filter hanya untuk file gambar
         self.filechooser = FileChooserIconView(filters=['*.png', '*.jpg', '*.jpeg'])
         self.filechooser.bind(on_selection=self.on_select)
         
         layout = BoxLayout(orientation="vertical")
         layout.add_widget(self.filechooser)
 
-        # Tombol untuk mengonfirmasi pilihan
         select_btn = Button(text="Pilih Gambar", size_hint_y=None, height=40)
         select_btn.bind(on_release=lambda x: self.confirm_selection())
         layout.add_widget(select_btn)
@@ -121,16 +109,14 @@ class FileChooserPopup(Popup):
         self.content = layout
 
     def on_select(self, *args):
-        # Debug print untuk melihat file yang terpilih
         print(f"on_select args: {args}")
-        if args and args[1]:  # Periksa apakah args[1] berisi daftar file yang dipilih
+        if args and args[1]:
             self.selected_file = args[1][0]
             print(f"File yang dipilih: {self.selected_file}")
         else:
             print("Tidak ada file yang dipilih dalam on_select.")
 
     def confirm_selection(self):
-        # Periksa apakah selected_file sudah terisi
         if self.selected_file:
             print(f"Mengonfirmasi file: {self.selected_file}")
             self.select(self.selected_file)
@@ -142,7 +128,6 @@ class LogoutPopup(Popup):
     def __init__(self, on_confirm, **kwargs):
         super(LogoutPopup, self).__init__(**kwargs)
         self.on_confirm_action = on_confirm
-        # Tambahkan tombol konfirmasi dengan callback
         self.content = BoxLayout(orientation='vertical')
         self.content.add_widget(Label(text="Apakah Anda yakin ingin logout?"))
         self.content.add_widget(Button(text="Ya", on_release=self.on_confirm))

@@ -7,18 +7,18 @@
 
         BoxLayout:
             orientation: 'vertical'
-            size_hint: 0.9, None  # Membatasi lebar agar tidak over
+            size_hint: 0.9, None
             height: '150dp'
             padding: [15, 15]
             spacing: 10
-            pos_hint: {'center_x': 0.5}  # Pusatkan layout agar seimbang
+            pos_hint: {'center_x': 0.5}
             canvas.before:
                 Color:
                     rgba: 0.2, 0.6, 0.8, 1
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [20,]  # Tambahkan radius lebih besar agar lebih bulat
+                    radius: [20,]
 
             Label:
                 text: "Profil Admin"
@@ -29,7 +29,7 @@
 
         Image:
             id: profile_image
-            source: 'asset/profile_icon.png'  # Gambar default
+            source: 'asset/profile_icon.png'
             size_hint: None, None
             size: 120, 120
             allow_stretch: True
