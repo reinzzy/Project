@@ -1,11 +1,12 @@
 import os
+from kivy.app import App
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
-from kivymd.uix.list import OneLineAvatarIconListItem, IconRightWidget, MDList
-from kivy.uix.spinner import Spinner
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivy.uix.popup import Popup
+from kivymd.uix.list import OneLineAvatarIconListItem, IconRightWidget
 import pyrebase
-from datetime import datetime
 
 firebase_config = {
     "apiKey": "AIzaSyCMDIZ_s0HG3Ozh_1tccSCaWmXC-0kZo1Y",
@@ -24,53 +25,63 @@ kv_path = os.path.join(os.path.dirname(__file__), '../kivy/absensi.kv')
 Builder.load_file(kv_path)
 
 class AbsensiScreen(Screen):
-    def on_pre_enter(self):
-        # Panggil fetch_attendance_data setiap kali layar ditampilkan
+    def on_enter(self):
         self.fetch_attendance_data()
 
     def fetch_attendance_data(self):
         try:
-            # Clear the list to prevent duplicate entries
             self.ids.employee_list.clear_widgets()
-
-            # Retrieve attendance data from Firebase
             attendance_data = db.child("attendance").get().val()
+
             if attendance_data:
-                grouped_data = {}  # Dictionary to hold attendance grouped by username
-
-                # Group attendance records by username
-                for record_id, record in attendance_data.items():
-                    user_id = record.get("user_id")
-                    category = record.get("category")
-                    timestamp = record.get("timestamp")
-                    date_time = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S').strftime('%d-%m-%Y %H:%M') if timestamp else "Unknown"
-
-                    # Get the username from the user_id
-                    user_data = db.child("users").child(user_id).get().val()
-                    username = user_data.get("username") if user_data else "Unknown User"
-
-                    # Group attendance records by username
-                    if username not in grouped_data:
-                        grouped_data[username] = []
-                    grouped_data[username].append(f"{category} - {date_time}")
-
-                # Create a spinner for each user with their attendance records
-                for username, records in grouped_data.items():
-                    box = BoxLayout(orientation='vertical', size_hint_y=None, height=40)
-                    spinner = Spinner(
-                        text=username,
-                        values=records,
-                        size_hint=(1, None),
-                        height=40
-                    )
-                    box.add_widget(spinner)
-                    self.ids.employee_list.add_widget(box)
-
+                grouped_data = self.group_attendance_data(attendance_data)
+                self.display_attendance_data(grouped_data)
             else:
                 print("Tidak ada data absensi.")
-
         except Exception as e:
             print(f"Error saat mengambil data dari Firebase: {e}")
+
+    def group_attendance_data(self, attendance_data):
+        grouped_data = {}
+        for record_id, record in attendance_data.items():
+            user_id = record.get("user_id")
+            category = record.get("category")
+
+            user_data = db.child("users").child(user_id).get().val()
+            if user_data:
+                username = user_data.get("username")
+                if username not in grouped_data:
+                    grouped_data[username] = {"Masuk": 0, "Izin": 0, "Sakit": 0}
+
+                if category in grouped_data[username]:
+                    grouped_data[username][category] += 1
+                else:
+                    print(f"Kategori tidak dikenali: {category}") 
+            else:
+                print(f"User data not found for User ID: {user_id}")
+
+        return grouped_data
+
+    def display_attendance_data(self, grouped_data):
+        for username, counts in grouped_data.items():
+            item = OneLineAvatarIconListItem(text=username)
+            icon = IconRightWidget(icon="information")
+            icon.bind(on_release=lambda instance, counts=counts, username=username: self.show_popup(username, counts))
+            item.add_widget(icon)
+            self.ids.employee_list.add_widget(item)
+
+    def show_popup(self, username, counts):
+        content = BoxLayout(orientation='vertical')
+        masuk_count = counts.get("Masuk", 0)
+        izin_count = counts.get("Izin", 0)
+        sakit_count = counts.get("Sakit", 0)
+
+        content.add_widget(Label(text=f"Masuk: {masuk_count}"))
+        content.add_widget(Label(text=f"Izin: {izin_count}"))
+        content.add_widget(Label(text=f"Sakit: {sakit_count}"))
+
+        popup = Popup(title=f"Rekap Absensi - {username}", content=content, size_hint=(0.8, 0.4))
+        popup.open()
 
     def go_back(self):
         self.manager.current = "main"

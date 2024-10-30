@@ -8,7 +8,7 @@ from screen.main_screen import MainScreen
 from screen.profile_screen import ProfileScreen
 from screen.employeelist_screen import EmployeeListScreen
 from screen.absensi_screen import AbsensiScreen
-from screen.daftargaji_screen import DaftarGaji
+from screen.addgaji_screen import AddGaji
 from screen.cekgaji_screen import CekGaji
 from screen.resetpw_screen import ResetPasswordScreen
 from screen.user_screen import UserScreen
@@ -30,7 +30,7 @@ class MyApp(MDApp):
         sm.add_widget(EmployeeListScreen(name='form'))
         sm.add_widget(SignupScreen(name='signup'))
         sm.add_widget(AbsensiScreen(name='absensi'))
-        sm.add_widget(DaftarGaji(name='daftargaji'))
+        sm.add_widget(AddGaji(name='addgaji'))
         sm.add_widget(CekGaji(name='cekgaji'))
         sm.add_widget(ResetPasswordScreen(name='resetpw'))
         sm.add_widget(UserScreen(name='user_absen'))

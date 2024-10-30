@@ -1,39 +1,46 @@
 #:kivy 2.3.0
+#:import MDList kivymd.uix.list.MDList
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
+#:import BoxLayout kivy.uix.boxlayout.BoxLayout
+
 <AbsensiScreen>:
     BoxLayout:
         orientation: 'vertical'
-        canvas.before:
-            Color:
-                rgba: 0, 0, 0, 1  # Black background color
-            Rectangle:
-                pos: self.pos
-                size: self.size
+        padding: dp(10)
+        spacing: dp(10)
 
         BoxLayout:
-            size_hint_y: 0.1
-            orientation: 'horizontal'
-            padding: 10
-
-            Button:
-                text: 'Back'
-                size_hint_x: 0.2
-                on_press: app.root.current = 'main'
-                background_color: 0.1, 0.1, 0.1, 1  # Dark gray button background
-                color: 1, 1, 1, 1  # White text
-
+            size_hint_y: None
+            height: '60dp'
+            canvas.before:
+                Color:
+                    rgba: 0.3, 0.5, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            
             Label:
-                text: "ABSENSI KARYAWAN\nPT. ABADI SELALU"
-                halign: "center"
-                size_hint_x: 0.9
-                color: 1, 1, 1, 1  # White text
-                text_size: self.size  
+                text: 'Daftar Absensi Karyawan'
+                font_size: '24sp'
+                color: 1, 1, 1, 1
+                halign: 'center'
+                valign: 'middle'
+                size_hint_y: None
+                height: '60dp'
 
         ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
-            size_hint_y: 0.8
-
             MDList:
                 id: employee_list
-                background_color: 0, 0, 0, 1  # Black background
-                color: 1, 1, 1, 1  # White text
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            padding: dp(10)
+            spacing: dp(10)
+
+            MDRaisedButton:
+                text: 'Kembali'
+                on_release: root.go_back()
+                size_hint_x: None
+                width: dp(100)
+                pos_hint: {"center_x": 0.5}

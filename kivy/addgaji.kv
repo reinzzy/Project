@@ -1,0 +1,63 @@
+#:kivy 2.3.0
+<AddGaji>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+
+        MDRaisedButton:
+            text: "Kembali"
+            size_hint_y: None
+            height: dp(50)
+            on_release: app.root.current = 'main'
+
+        Label:
+            text: 'Tambah Daftar Gaji User'
+            font_size: '24sp'
+            size_hint_y: None
+            height: dp(40)
+            halign: 'center'
+
+        MDCard:
+            orientation: 'vertical'
+            padding: dp(10)
+            size_hint_y: None
+            height: dp(300)
+            spacing: dp(10)
+
+            Spinner:
+                id: user_spinner
+                text: 'Pilih User'
+                size_hint_y: None
+                height: dp(40)
+                on_text: root.on_user_select(self.text)
+
+            TextInput:
+                id: attendance_input
+                hint_text: 'Jumlah Kehadiran'
+                multiline: False
+                size_hint_y: None
+                height: dp(40)
+                disabled: True
+
+            TextInput:
+                id: allowance_input
+                hint_text: 'Tunjangan'
+                multiline: False
+                size_hint_y: None
+                height: dp(40)
+
+            TextInput:
+                id: bonus_input
+                hint_text: 'Bonus'
+                multiline: False
+                size_hint_y: None
+                height: dp(40)
+
+        # Tombol Tambah Gaji
+        MDRaisedButton:
+            text: "Tambahkan Gaji"
+            size_hint_y: None
+            height: dp(50)
+            on_release: root.add_salary()
+            pos_hint: {'center_x': 0.5}
