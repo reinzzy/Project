@@ -56,7 +56,14 @@ class AttendanceScreen(Screen):
 
         ok_button = Button(text="OK", size_hint=(1, 0.2))
         popup_layout.add_widget(ok_button)
+        back_button = Button(text="Kembali", size_hint=(1, 0.2))
+        popup_layout.add_widget(back_button)
 
         popup = Popup(title=title, content=popup_layout, size_hint=(0.6, 0.4))
         ok_button.bind(on_press=popup.dismiss)
+        back_button.bind(on_press=lambda *args: self.back_to_user_absen(popup))
         popup.open()
+
+    def back_to_user_absen(self, popup):
+        popup.dismiss()
+        self.manager.current = 'user_absen'

@@ -4,21 +4,38 @@
         orientation: 'vertical'
         padding: 20
         spacing: 10
-        
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            Button:
+                text: "Kembali"
+                size_hint_x: None
+                width: '100dp'
+                on_release: app.root.current = 'user_absen'  
+
         Label:
             id: username_label
             text: "Username: "
             font_size: 20
-        
+            size_hint_y: None
+            height: '40dp'
+
         Label:
             text: "Pilih Kategori Absen"
             font_size: 18
+            size_hint_y: None
+            height: '40dp'
 
         Spinner:
             id: attendance_spinner
             text: "Pilih Kategori"
             values: ["Pilih Kategori", "Masuk", "Izin", "Sakit"]
-        
+            size_hint_y: None
+            height: '50dp'
+
         Button:
             text: "Kirim Absen"
+            size_hint_y: None
+            height: '50dp'
             on_release: root.submit_attendance()
