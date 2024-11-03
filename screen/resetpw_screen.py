@@ -3,7 +3,6 @@ import pyrebase
 from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.lang import Builder
@@ -35,33 +34,13 @@ class ResetPasswordScreen(Screen):
         super(ResetPasswordScreen, self).__init__(**kwargs)
         self.captcha_text = self.generate_captcha()  # Generate CAPTCHA
 
-        layout = BoxLayout(orientation='vertical', padding=20, spacing=10)
-
-        self.email_input = TextInput(hint_text="Masukkan email Anda", multiline=False)
-        layout.add_widget(self.email_input)
-
-        self.new_password_input = TextInput(hint_text="Masukkan password baru", password=True, multiline=False)
-        layout.add_widget(self.new_password_input)
-
-        self.captcha_label = Label(text=self.captcha_text, font_size='20sp', bold=True)
-        layout.add_widget(self.captcha_label)
-
-        self.captcha_input = TextInput(hint_text="Masukkan teks captcha", multiline=False)
-        layout.add_widget(self.captcha_input)
-
-        reset_button = Button(text="Ganti Password")
-        reset_button.bind(on_press=self.reset_password)
-        layout.add_widget(reset_button)
-
-        self.add_widget(layout)
-
     def generate_captcha(self):
         return ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
 
     def reset_password(self, instance):
-        email = self.email_input.text
-        new_password = self.new_password_input.text
-        input_captcha = self.captcha_input.text
+        email = self.ids.email_input.text
+        new_password = self.ids.new_password_input.text
+        input_captcha = self.ids.captcha_input.text
 
         if email == "" or new_password == "" or input_captcha == "":
             self.show_popup("Error", "Email, password, dan captcha tidak boleh kosong!")

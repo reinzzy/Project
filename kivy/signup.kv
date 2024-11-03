@@ -4,6 +4,12 @@
         orientation: 'vertical'
         padding: 40
         spacing: 20
+        canvas.before:
+            Color:
+                rgba: 0.9, 0.9, 0.9, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
         Label:
             text: "SIGN UP"
@@ -15,59 +21,88 @@
             id: signup_username
             hint_text: "Username"
             multiline: False
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: 50
             font_size: 18
             padding: [10, 10]
+            background_color: (1, 1, 1, 1)
+            foreground_color: (0, 0, 0, 1)
+            border_radius: [10, 10, 10, 10]  
 
         TextInput:
             id: signup_email
             hint_text: "Email"
             multiline: False
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: 50
             font_size: 18
             padding: [10, 10]
+            background_color: (1, 1, 1, 1)
+            foreground_color: (0, 0, 0, 1)
+            border_radius: [10, 10, 10, 10]
 
         TextInput:
             id: signup_password
             hint_text: "Password"
             password: True
             multiline: False
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: 50
             font_size: 18
             padding: [10, 10]
+            background_color: (1, 1, 1, 1)
+            foreground_color: (0, 0, 0, 1)
+            border_radius: [10, 10, 10, 10]
 
         TextInput:
             id: verify_password
             hint_text: "Verify Password"
             password: True
             multiline: False
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: 50
             font_size: 18
             padding: [10, 10]
-
-        Spinner:
-            id: role_spinner
-            text: "Pilih Role"
-            values: ["User", "Admin"]
-            size_hint_y: None
-            height: 40
+            background_color: (1, 1, 1, 1)
+            foreground_color: (0, 0, 0, 1)
+            border_radius: [10, 10, 10, 10]
 
         Label:
             id: signup_message
             text: ""
             color: 1, 0, 0, 1
             font_size: 14
+            size_hint_y: None
+            height: 30
 
         Button:
             text: "Daftar"
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: 50
             font_size: 18
             background_color: 0, 0.5, 1, 1
+            color: 1, 1, 1, 1
             on_press: root.register()
+            canvas.before:
+                Color:
+                    rgba: 0, 0.5, 1, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10, 10, 10, 10]
 
         Button:
             text: "Kembali ke Login"
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: 50
             font_size: 16
             background_color: 0.7, 0.7, 0.7, 1
+            color: 1, 1, 1, 1
             on_press: root.manager.current = 'login'
+            canvas.before:
+                Color:
+                    rgba: 0.7, 0.7, 0.7, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10, 10, 10, 10]

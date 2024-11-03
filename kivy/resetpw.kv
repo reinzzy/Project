@@ -1,31 +1,83 @@
 #:kivy 2.3.0
 <ResetPasswordScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 20
-        spacing: 10
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
 
-        TextInput:
-            id: email_input
-            hint_text: "Masukkan email Anda"
-            multiline: False
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [20, 30, 20, 30]
+            spacing: 20
+            size_hint: None, None
+            width: 340
+            height: 400 
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.95, 0.95, 1 
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
-        TextInput:
-            id: new_password_input
-            hint_text: "Masukkan password baru"
-            password: True
-            multiline: False
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+                Button:
+                    text: "< Kembali"
+                    size_hint: None, None
+                    size: 100, 40
+                    background_normal: ''
+                    background_color: (0.4, 0.4, 0.4, 1)
+                    color: (1, 1, 1, 1)
+                    on_press: root.manager.current = 'login'
 
-        Label:
-            text: root.captcha_text
-            font_size: '20sp'
-            bold: True
+            TextInput:
+                id: email_input
+                hint_text: "Masukkan email Anda"
+                multiline: False
+                size_hint_y: None
+                height: 45
+                font_size: 16
+                background_normal: ''
+                background_color: (1, 1, 1, 1)
+                hint_text_color: (0.6, 0.6, 0.6, 1)
 
-        TextInput:
-            id: captcha_input
-            hint_text: "Masukkan teks captcha"
-            multiline: False
+            TextInput:
+                id: new_password_input
+                hint_text: "Masukkan password baru"
+                password: True
+                multiline: False
+                size_hint_y: None
+                height: 45
+                font_size: 16
+                background_normal: ''
+                background_color: (1, 1, 1, 1)
+                hint_text_color: (0.6, 0.6, 0.6, 1)
 
-        Button:
-            text: "Ganti Password"
-            on_press: root.reset_password(self)
+            Label:
+                text: root.captcha_text
+                font_size: '24sp'
+                bold: True
+                size_hint_y: None
+                height: 40
+                color: (0, 0, 0, 1)
+
+            TextInput:
+                id: captcha_input
+                hint_text: "Masukkan teks captcha"
+                multiline: False
+                size_hint_y: None
+                height: 45
+                font_size: 16
+                background_normal: ''
+                background_color: (1, 1, 1, 1)
+                hint_text_color: (0.6, 0.6, 0.6, 1)
+
+            Button:
+                text: "Ganti Password"
+                size_hint_y: None
+                height: 50
+                font_size: 18
+                background_normal: ''
+                background_color: (0.1, 0.5, 0.8, 1)
+                color: (1, 1, 1, 1)
+                on_press: root.reset_password(self)

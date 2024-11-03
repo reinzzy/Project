@@ -28,13 +28,28 @@ kv_path = os.path.join(os.path.dirname(__file__), '../kivy/profile.kv')
 Builder.load_file(kv_path)
 
 class ProfileScreen(Screen):
+    def __init__(self, **kwargs):
+        super(ProfileScreen, self).__init__(**kwargs)
+        self.current_uid = None 
+
     def on_enter(self):
+        self.current_uid = self.manager.get_screen('login').current_user_uid
         self.load_profile()
 
     def load_profile(self):
+        self.ids.name_input.text = ""
+        self.ids.birth_date_input.text = ""
+        self.ids.address_input.text = ""
+        self.ids.email_input.text = ""
+        self.ids.profile_image.source = 'asset/profile_icon.png'
+
+        if not self.current_uid:
+            print("UID pengguna tidak ditemukan.")
+            return
+
         try:
-            profile_data = db.child("profile").get()
-            if profile_data.each():
+            profile_data = db.child("profiles").child(self.current_uid).get()
+            if profile_data.val():
                 profile_info = profile_data.val()
                 self.ids.name_input.text = profile_info.get("name", "")
                 self.ids.birth_date_input.text = profile_info.get("birth_date", "")
@@ -43,7 +58,7 @@ class ProfileScreen(Screen):
                 self.ids.profile_image.source = profile_info.get("profile_image", 'asset/profile_icon.png')
                 print("Data profil berhasil dimuat!")
             else:
-                print("Tidak ada data profil ditemukan.")
+                print("Tidak ada data profil ditemukan untuk UID ini.")
         except Exception as e:
             print(f"Error memuat data profil: {e}")
 
@@ -52,17 +67,25 @@ class ProfileScreen(Screen):
         content.open()
 
     def upload_photo(self, file_path):
+        if not self.current_uid:
+            print("UID pengguna tidak ditemukan.")
+            return
+
         try:
             file_name = os.path.basename(file_path)
             storage.child("profile_photos/" + file_name).put(file_path)
             download_url = storage.child("profile_photos/" + file_name).get_url(None)
             self.ids.profile_image.source = download_url
-            db.child("profile").update({"profile_image": download_url})
+            db.child("profiles").child(self.current_uid).update({"profile_image": download_url})
             print("Foto profil berhasil diunggah dan disimpan di database!")
         except Exception as e:
             print(f"Error mengunggah foto profil: {e}")
 
     def save_profile(self):
+        if not self.current_uid:
+            print("UID pengguna tidak ditemukan.")
+            return
+
         name = self.ids.name_input.text
         birth_date = self.ids.birth_date_input.text
         address = self.ids.address_input.text
@@ -73,9 +96,9 @@ class ProfileScreen(Screen):
             "address": address,
             "email": email,
         }
-        
+
         try:
-            db.child("profile").set(profile_data)
+            db.child("profiles").child(self.current_uid).set(profile_data)
             print("Data profil berhasil disimpan!")
         except Exception as e:
             print(f"Error menyimpan data profil: {e}")
@@ -109,7 +132,6 @@ class FileChooserPopup(Popup):
         self.content = layout
 
     def on_select(self, *args):
-        print(f"on_select args: {args}")
         if args and args[1]:
             self.selected_file = args[1][0]
             print(f"File yang dipilih: {self.selected_file}")
@@ -118,7 +140,6 @@ class FileChooserPopup(Popup):
 
     def confirm_selection(self):
         if self.selected_file:
-            print(f"Mengonfirmasi file: {self.selected_file}")
             self.select(self.selected_file)
             self.dismiss()
         else:

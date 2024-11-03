@@ -24,6 +24,10 @@ kv_path = os.path.join(os.path.dirname(__file__), '../kivy/login.kv')
 Builder.load_file(kv_path)
 
 class LoginScreen(Screen):
+    def __init__(self, **kwargs):
+        super(LoginScreen, self).__init__(**kwargs)
+        self.current_user_uid = None
+
     def login(self):
         email = self.ids.username.text
         password = self.ids.password.text
@@ -40,6 +44,8 @@ class LoginScreen(Screen):
                     username = user_data['username']
                     role = user_data['role']
                     user_id = user_data['uid']
+
+                    self.current_user_uid = user_id
 
                     self.manager.get_screen('main').set_username(username)
                     self.manager.get_screen('user_absen').set_user_id(user_id)
@@ -74,3 +80,8 @@ class LoginScreen(Screen):
         popup = Popup(title=title, content=popup_layout, size_hint=(0.6, 0.4))
         ok_button.bind(on_press=popup.dismiss)
         popup.open()
+
+
+class ProfileScreen(Screen):
+    def on_enter(self):
+        self.current_uid = self.manager.get_screen('login').current_user_uid
