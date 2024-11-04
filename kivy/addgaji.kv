@@ -12,7 +12,7 @@
             on_release: app.root.current = 'main'
 
         Label:
-            text: 'Tambah Daftar Gaji User'
+            text: 'Add Gaji Karyawan'
             font_size: '24sp'
             size_hint_y: None
             height: dp(40)
@@ -27,7 +27,7 @@
 
             Spinner:
                 id: user_spinner
-                text: 'Pilih User'
+                text: 'Pilih Karyawan'
                 size_hint_y: None
                 height: dp(40)
                 on_text: root.on_user_select(self.text)

@@ -2,10 +2,19 @@
 <CekGaji>:
     BoxLayout:
         orientation: 'vertical'
-        size_hint: (1, 1)
-        padding: [10, 10, 10, 10]
         
-        # Tempat untuk KivyTable
+        MDLabel:
+            text: "Cek Data Gaji Karyawan"
+            halign: 'center'
+            font_style: 'H5'
+            size_hint_y: None
+            height: dp(50)
+        
         BoxLayout:
             id: table_container
-            size_hint: (1, 1)
+            padding: dp(10)
+        
+        MDRaisedButton:
+            text: "Kembali"
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'main'
