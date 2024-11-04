@@ -6,9 +6,6 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 import os
 
-kv_path = os.path.join(os.path.dirname(__file__), '../kivy/user.kv')
-Builder.load_file(kv_path)
-
 class UserScreen(Screen):
     def go_to_attendance(self):
         self.manager.current = 'attendance'

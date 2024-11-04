@@ -6,10 +6,7 @@ from config import firebase_config
 
 firebase = pyrebase.initialize_app(firebase_config)
 auth = firebase.auth()  
-db = firebase.database() 
-
-kv_path = os.path.join(os.path.dirname(__file__), '../kivy/signup.kv')
-Builder.load_file(kv_path)
+db = firebase.database()
 
 class SignupScreen(Screen):
     def register(self):

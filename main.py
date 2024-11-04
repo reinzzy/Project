@@ -1,3 +1,5 @@
+import os
+from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
 from kivy.config import Config
@@ -17,6 +19,11 @@ from screen.attendance_screen import AttendanceScreen
 Window.size = (360, 640)
 Config.set('input', 'mouse', 'mouse,disable_multitouch')
 Config.set('kivy', 'keyboard_mode', 'system')
+
+kv_dir = os.path.join(os.path.dirname(__file__), 'kivy')
+for kv_file in os.listdir(kv_dir):
+    if kv_file.endswith('.kv'):
+        Builder.load_file(os.path.join(kv_dir, kv_file))
 
 class MyApp(MDApp):
     def build(self):

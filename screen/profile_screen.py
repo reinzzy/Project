@@ -16,9 +16,6 @@ firebase = pyrebase.initialize_app(firebase_config)
 storage = firebase.storage()
 db = firebase.database()
 
-kv_path = os.path.join(os.path.dirname(__file__), '../kivy/profile.kv')
-Builder.load_file(kv_path)
-
 class ProfileScreen(Screen):
     def __init__(self, **kwargs):
         super(ProfileScreen, self).__init__(**kwargs)

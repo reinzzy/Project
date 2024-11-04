@@ -12,9 +12,6 @@ from config import firebase_config
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
-kv_path = os.path.join(os.path.dirname(__file__), '../kivy/attendance.kv')
-Builder.load_file(kv_path)
-
 class AttendanceScreen(Screen):
     def on_enter(self):
         self.user_id = self.manager.get_screen('user_absen').user_id

@@ -11,9 +11,6 @@ from config import firebase_config
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
-kv_path = os.path.join(os.path.dirname(__file__), '../kivy/login.kv')
-Builder.load_file(kv_path)
-
 class LoginScreen(Screen):
     def __init__(self, **kwargs):
         super(LoginScreen, self).__init__(**kwargs)

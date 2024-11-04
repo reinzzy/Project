@@ -11,9 +11,6 @@ from config import firebase_config
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
-kv_path = os.path.join(os.path.dirname(__file__), '../kivy/addgaji.kv')
-Builder.load_file(kv_path)
-
 class AddGaji(Screen):
     def on_enter(self):
         self.ids.user_spinner.values = self.get_users_with_role("User")

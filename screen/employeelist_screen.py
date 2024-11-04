@@ -10,9 +10,6 @@ from config import firebase_config
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
-kv_path = os.path.join(os.path.dirname(__file__), '../kivy/employeelist.kv')
-Builder.load_file(kv_path)
-
 class EmployeeListScreen(Screen):
     def on_enter(self):
         self.load_employee_data()
