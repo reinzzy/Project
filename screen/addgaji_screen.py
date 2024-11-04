@@ -39,11 +39,11 @@ class AddGaji(Screen):
         salary_per_presence = 80000
         
         if selected_user:
-            attendance_count = int(self.ids.attendance_input.text)
-            allowance = int(self.ids.allowance_input.text)
-            bonus = int(self.ids.bonus_input.text)
+            attendance_count = int(self.ids.attendance_input.text) 
+            allowance = int(self.ids.allowance_input.text) if self.ids.allowance_input.text else 0  
+            bonus = int(self.ids.bonus_input.text) if self.ids.bonus_input.text else 0  
 
-            total_salary = (attendance_count * salary_per_presence) + allowance + bonus
+            total_salary = (attendance_count * salary_per_presence)
 
             db.child("salaries").child(selected_user).update({
                 "amount": total_salary,
@@ -73,6 +73,7 @@ class AddGaji(Screen):
                 for record in attendance_data.values():
                     if record.get('user_id') == user_id and record.get('category') == 'Masuk':
                         count += 1
+            print(f"Kehadiran untuk user_id {user_id}: {count}")  # Tambahkan ini
             return count
         except Exception as e:
             print(f"Error saat menghitung kehadiran: {e}")

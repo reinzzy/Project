@@ -1,54 +1,84 @@
 #:kivy 2.3.0
 <LoginScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 40
-        spacing: 10
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 1 
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
         Label:
-            text: "LOGIN"
-            font_size: 32
+            text: "APLIKASI GAJI KARYAWAN"
+            font_size: 24
             bold: True
+            color: 0, 0, 0, 1  
+            size_hint_y: None
+            height: dp(40)
+            pos_hint: {'center_x': 0.5, 'top': 0.9}  
+
+        Label:
+            text: "Silakan masuk untuk melanjutkan"
+            font_size: 16
+            color: 0.5, 0.5, 0.5, 1
+            size_hint_y: None
+            height: dp(30)
+            pos_hint: {'center_x': 0.5, 'top': 0.85} 
 
         TextInput:
             id: username
             hint_text: "Email"
             multiline: False
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: dp(50)  
             font_size: 18
-            padding: [10, 10]
+            padding: [10, 10] 
+            pos_hint: {'center_x': 0.5, 'top': 0.72}
+            background_color: 1, 1, 1, 1  
 
         TextInput:
             id: password
             hint_text: "Password"
             password: True
             multiline: False
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: dp(50)
             font_size: 18
-            padding: [10, 10]
+            padding: [10, 10] 
+            pos_hint: {'center_x': 0.5, 'top': 0.62} 
+            background_color: 1, 1, 1, 1
 
         Button:
             text: "Lupa kata sandi?"
             size_hint_y: None
-            height: 30
+            height: dp(30)
             background_color: 0, 0, 0, 0
             color: 0, 0, 1, 1
+            pos_hint: {'center_x': 0.5, 'top': 0.55} 
             on_press: root.go_to_resetpw()
 
         Button:
             text: "Login"
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: dp(50)
             font_size: 18
+            pos_hint: {'center_x': 0.5, 'top': 0.45}
             on_release: root.login()
+            background_color: 0.2, 0.6, 0.8, 1 
 
         Button:
             text: "Sign Up"
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: dp(50)
             font_size: 18
+            pos_hint: {'center_x': 0.5, 'top': 0.35}
             on_release: root.go_to_signup()
+            background_color: 0.2, 0.6, 0.2, 1 
 
         Label:
             id: login_message
             text: ""
             color: 1, 0, 0, 1
-            size_hint_y: 0.2
+            size_hint_y: None
+            height: dp(30)
+            pos_hint: {'center_x': 0.5, 'top': 0.25}

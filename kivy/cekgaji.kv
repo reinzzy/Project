@@ -18,3 +18,7 @@
             text: "Kembali"
             pos_hint: {'center_x': 0.5}
             on_release: app.root.current = 'main'
+
+        MDRectangleFlatButton:
+            text: "Cetak PDF"
+            on_release: root.print_pdf()
