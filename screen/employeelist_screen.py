@@ -1,4 +1,3 @@
-import os
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.uix.label import Label
@@ -15,13 +14,11 @@ class EmployeeListScreen(Screen):
         self.load_employee_data()
 
     def load_employee_data(self):
-        # Kosongkan tampilan daftar karyawan
         employee_list = self.ids.employee_list
         employee_list.clear_widgets()
 
         try:
             users = db.child("users").get()
-            # Menambahkan pengguna berperan 'user' ke daftar
             for idx, user in enumerate(users.each(), start=1):
                 user_data = user.val()
                 if user_data.get('role') == 'User':
@@ -29,7 +26,7 @@ class EmployeeListScreen(Screen):
                         text=f"{idx}. {user_data.get('username')} - {user_data.get('email')}",
                         size_hint_y=None,
                         height=50,
-                        color=[1, 1, 1, 1],  # Warna putih
+                        color=[1, 1, 1, 1], 
                         font_size=18,
                         halign='left'
                     )

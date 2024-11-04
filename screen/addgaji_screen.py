@@ -1,4 +1,3 @@
-import os
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivymd.uix.dialog import MDDialog
@@ -70,7 +69,7 @@ class AddGaji(Screen):
                 for record in attendance_data.values():
                     if record.get('user_id') == user_id and record.get('category') == 'Masuk':
                         count += 1
-            print(f"Kehadiran untuk user_id {user_id}: {count}")  # Tambahkan ini
+            print(f"Kehadiran untuk user_id {user_id}: {count}")  
             return count
         except Exception as e:
             print(f"Error saat menghitung kehadiran: {e}")

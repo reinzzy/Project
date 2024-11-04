@@ -1,11 +1,12 @@
-import os
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from reportlab.lib import colors
+from reportlab.lib.units import inch
 import pyrebase
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivymd.uix.datatables import MDDataTable
 from kivy.metrics import dp
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
 from config import firebase_config
@@ -15,13 +16,13 @@ db = firebase.database()
 
 class CekGaji(Screen):
     def on_enter(self):
-        self.fetch_salaries() 
+        self.fetch_salaries()
 
     def fetch_salaries(self):
-        salaries = db.child("salaries").get() 
+        salaries = db.child("salaries").get()
 
         if not salaries.each():
-            self.show_no_data_popup()  
+            self.show_no_data_popup()
             return
 
         data = []
@@ -78,34 +79,44 @@ class CekGaji(Screen):
     def create_pdf(self, data, filename):
         pdf = canvas.Canvas(filename, pagesize=letter)
         pdf.setTitle("Rekap Gaji Karyawan")
+        width, height = letter
+        
+        # Header 
+        pdf.setFillColor(colors.HexColor("#2C3E50"))
+        pdf.rect(0, height - 80, width, 80, fill=True, stroke=False)
+        
+        pdf.setFont("Helvetica-Bold", 20)
+        pdf.setFillColor(colors.white)
+        pdf.drawString(50, height - 50, "Rekap Gaji Karyawan")
+        
+        # Footer 
+        pdf.setFont("Helvetica", 10)
+        pdf.setFillColor(colors.HexColor("#7F8C8D"))
+        pdf.drawString(50, 30, "Rekap Gaji Karyawan © 2024")
 
-        x = 50
-        y = 750
-
-        pdf.setFont("Helvetica-Bold", 16)
-        pdf.drawString(x, y, "Rekap Gaji Karyawan")
-
-        pdf.setFont("Helvetica", 12)
-        y -= 30
-
+        # Judul Kolom
         columns = ["Nama", "Gaji Pokok", "Tunjangan", "Bonus"]
-        for col in columns:
-            pdf.drawString(x, y, str(col))
-            x += 100  
+        column_width = (width - 100) / len(columns)
+        
+        pdf.setFillColor(colors.HexColor("#34495E"))
+        pdf.setFont("Helvetica-Bold", 12)
+        y = height - 130
+        for i, col in enumerate(columns):
+            pdf.drawString(50 + i * column_width, y, col)
 
-        x = 50
-        y -= 20
-
+        pdf.setFont("Helvetica", 10)
+        pdf.setFillColor(colors.black)
+        y -= 15
         for entry in data:
-            for item in entry:
-                pdf.drawString(x, y, str(item))
-                x += 100  
-            x = 50  
-            y -= 20  
+            for i, item in enumerate(entry):
+                pdf.drawString(50 + i * column_width, y, str(item))
+            y -= 20
+            pdf.setStrokeColor(colors.HexColor("#BDC3C7"))
+            pdf.setLineWidth(0.5)
+            pdf.line(50, y + 10, width - 50, y + 10)
 
-        pdf.save() 
+        pdf.save()
 
     def print_pdf(self):
         data = [(name, amount, allowance, bonus) for name, amount, allowance, bonus in self.table.row_data]
         self.create_pdf(data, "rekap_gaji_karyawan.pdf")
-        print("PDF telah dibuat: rekap_gaji_karyawan.pdf")
