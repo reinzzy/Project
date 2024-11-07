@@ -57,7 +57,6 @@ class ProfileScreen(Screen):
 
     def upload_photo(self, file_path):
         if not self.current_uid:
-            print("UID pengguna tidak ditemukan.")
             return
 
         try:
@@ -66,7 +65,6 @@ class ProfileScreen(Screen):
             download_url = storage.child("profile_photos/" + file_name).get_url(None)
             self.ids.profile_image.source = download_url
             db.child("profiles").child(self.current_uid).update({"profile_image": download_url})
-            print("Foto profil berhasil diunggah dan disimpan di database!")
         except Exception as e:
             print(f"Error mengunggah foto profil: {e}")
 
