@@ -8,6 +8,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivymd.uix.textfield import MDTextField
+from kivy.uix.image import AsyncImage
 from kivy.properties import StringProperty
 from config import firebase_config
 import pyrebase
@@ -44,6 +45,14 @@ class ProfileScreen(Screen):
                 self.ids.birth_date_input.text = profile_info.get("birth_date", "")
                 self.ids.address_input.text = profile_info.get("address", "")
                 self.ids.email_input.text = profile_info.get("email", "")
+                image_layout = BoxLayout(size_hint_x=0.3, padding=5)
+                image_url = profile_info.get("profile_image", 'asset/profile_icon.png')
+                if image_url:
+                    profile_image = AsyncImage(
+                        source=image_url
+
+                    )
+                    image_layout.add_widget(profile_image)
                 self.ids.profile_image.source = profile_info.get("profile_image", 'asset/profile_icon.png')
                 print("Data profil berhasil dimuat!")
             else:
@@ -65,8 +74,10 @@ class ProfileScreen(Screen):
             download_url = storage.child("profile_photos/" + file_name).get_url(None)
             self.ids.profile_image.source = download_url
             db.child("profiles").child(self.current_uid).update({"profile_image": download_url})
+            print(f"Foto profil berhasil diunggah. URL: {download_url}")
         except Exception as e:
             print(f"Error mengunggah foto profil: {e}")
+
 
     def save_profile(self):
         if not self.current_uid:
@@ -106,31 +117,35 @@ class FileChooserPopup(Popup):
         self.title = "Pilih Foto"
         self.size_hint = (0.9, 0.9)
 
+        # Menambahkan filechooser dengan filter yang sesuai
         self.filechooser = FileChooserIconView(filters=['*.png', '*.jpg', '*.jpeg'])
-        self.filechooser.bind(on_selection=self.on_select)
-        
+        self.filechooser.bind(selection=self.on_select)  # Perbaikan: Penggunaan 'selection' sebagai property
+
         layout = BoxLayout(orientation="vertical")
         layout.add_widget(self.filechooser)
 
+        # Tombol untuk mengonfirmasi pemilihan gambar
         select_btn = Button(text="Pilih Gambar", size_hint_y=None, height=40)
-        select_btn.bind(on_release=lambda x: self.confirm_selection())
+        select_btn.bind(on_release=lambda x: self.confirm_selection())  # Menambahkan pemanggilan confirm_selection
         layout.add_widget(select_btn)
-        
+
         self.content = layout
 
-    def on_select(self, *args):
-        if args and args[1]:
-            self.selected_file = args[1][0]
+    def on_select(self, filechooser, selection):
+        # Cek jika file dipilih
+        if selection:
+            self.selected_file = selection[0]  # Ambil file pertama yang dipilih
             print(f"File yang dipilih: {self.selected_file}")
         else:
             print("Tidak ada file yang dipilih dalam on_select.")
 
     def confirm_selection(self):
         if self.selected_file:
+            # Memanggil callback dengan file yang dipilih
             self.select(self.selected_file)
             self.dismiss()
         else:
-            print("Tidak ada file yang dipilih.")
+            print("Tidak ada file yang dipilih saat confirm_selection")
 
 class LogoutPopup(Popup):
     def __init__(self, on_confirm, **kwargs):
