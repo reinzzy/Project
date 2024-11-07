@@ -1,7 +1,7 @@
 #:kivy 2.3.0
 #:import MDList kivymd.uix.list.MDList
 #:import MDRaisedButton kivymd.uix.button.MDRaisedButton
-#:import BoxLayout kivy.uix.boxlayout.BoxLayout
+#:import MDDataTable kivymd.uix.datatables.MDDataTable
 
 <AbsensiScreen>:
     BoxLayout:
@@ -11,30 +11,7 @@
 
         BoxLayout:
             size_hint_y: None
-            height: '60dp'
-            canvas.before:
-                Color:
-                    rgba: 0.3, 0.5, 0.8, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            
-            Label:
-                text: 'Daftar Absensi Karyawan'
-                font_size: '24sp'
-                color: 1, 1, 1, 1
-                halign: 'center'
-                valign: 'middle'
-                size_hint_y: None
-                height: '60dp'
-
-        ScrollView:
-            MDList:
-                id: employee_list
-
-        BoxLayout:
-            size_hint_y: None
-            height: '50dp'
+            height: dp(50)
             padding: dp(10)
             spacing: dp(10)
 
@@ -44,3 +21,29 @@
                 size_hint_x: None
                 width: dp(100)
                 pos_hint: {"center_x": 0.5}
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color:
+                    rgba: 0.3, 0.5, 0.8, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            
+            Label:
+                text: 'Daftar Absensi Karyawan'
+                font_size: '20sp'
+                color: 1, 1, 1, 1
+                halign: 'center'
+                valign: 'middle'
+                size_hint_y: None
+                height: dp(60)
+
+        ScrollView:
+            MDList:
+                id: employee_list
+                size_hint_y: None
+
+        
