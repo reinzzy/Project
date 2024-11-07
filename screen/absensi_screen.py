@@ -4,7 +4,7 @@ from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-from kivymd.uix.list import OneLineAvatarIconListItem, IconRightWidget
+from kivymd.uix.datatables import MDDataTable
 import pyrebase
 from config import firebase_config
 
@@ -43,32 +43,37 @@ class AbsensiScreen(Screen):
                 if category in grouped_data[username]:
                     grouped_data[username][category] += 1
                 else:
-                    print(f"Kategori tidak dikenali: {category}") 
+                    print(f"Kategori tidak dikenali: {category}")
             else:
                 print(f"User data not found for User ID: {user_id}")
 
         return grouped_data
 
     def display_attendance_data(self, grouped_data):
+        columns = [
+            ("Nama", 30),
+            ("Masuk", 20),
+            ("Izin", 20),
+            ("Sakit", 20),
+        ]
+
+        row_data = []
         for username, counts in grouped_data.items():
-            item = OneLineAvatarIconListItem(text=username)
-            icon = IconRightWidget(icon="information")
-            icon.bind(on_release=lambda instance, counts=counts, username=username: self.show_popup(username, counts))
-            item.add_widget(icon)
-            self.ids.employee_list.add_widget(item)
+            masuk_count = str(counts.get("Masuk", 0))
+            izin_count = str(counts.get("Izin", 0))
+            sakit_count = str(counts.get("Sakit", 0))
+            row_data.append([username, masuk_count, izin_count, sakit_count])
 
-    def show_popup(self, username, counts):
-        content = BoxLayout(orientation='vertical')
-        masuk_count = counts.get("Masuk", 0)
-        izin_count = counts.get("Izin", 0)
-        sakit_count = counts.get("Sakit", 0)
+        self.data_table = MDDataTable(
+            size_hint=(1, None),
+            height=self.height - 200,
+            column_data=columns,
+            row_data=row_data,
+            elevation=2,
+            use_pagination=True,
+        )
 
-        content.add_widget(Label(text=f"Masuk: {masuk_count}"))
-        content.add_widget(Label(text=f"Izin: {izin_count}"))
-        content.add_widget(Label(text=f"Sakit: {sakit_count}"))
-
-        popup = Popup(title=f"Rekap Absensi - {username}", content=content, size_hint=(0.8, 0.4))
-        popup.open()
+        self.ids.employee_list.add_widget(self.data_table)
 
     def go_back(self):
         self.manager.current = "main"
